@@ -78,17 +78,20 @@ const TabNavigator = createBottomTabNavigator({
 
 );
 */
-const App = createAppContainer(AppNavigator);
+const App = createAppContainer(Appss);
 
-export default App;
-/*
-export default class App extends React.Component {
+
+class Appss extends React.Component {
 
   render() {
     return (
-      //<AppNavigator /> ,
-      <TabNavigator />
+		<Provider>
+			<AppNavigator /> 
+		</Provider>
+      //<TabNavigator />
     );
   }
 }
-*/
+
+
+export default App;
