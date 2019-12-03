@@ -1,4 +1,6 @@
 {
-  "packagerPort": null,
-  "packagerPid": null
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
