@@ -14,7 +14,12 @@ export default class ScreenA extends Component {
     //this.getPOIsFromApiAsync(45, 7);
     return (
       <Subscribe to={[POIsContainer]}>
-		{pois => <SimpleList value={pois.state.pois} />}
+			{
+				pois => <ListView
+							dataSource={pois}
+							renderRow={(rowData) => <Text>{rowData}</Text>}
+						/>
+			}
       </Subscribe>
     );
   }
