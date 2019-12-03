@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'unstated';
+import { createAppContainer } from 'react-navigation';
 import { Text, ListView, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -27,7 +28,7 @@ const AppNavigator = createStackNavigator({
     }
   }
 );
-
+/*
 
 const TabNavigator = createBottomTabNavigator({
 
@@ -76,7 +77,11 @@ const TabNavigator = createBottomTabNavigator({
 
 
 );
+*/
+const App = createAppContainer(AppNavigator);
 
+export default App;
+/*
 export default class App extends React.Component {
 
   render() {
@@ -86,3 +91,4 @@ export default class App extends React.Component {
     );
   }
 }
+*/
