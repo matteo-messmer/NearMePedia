@@ -10,25 +10,13 @@ const styles = {
   };
 
 export default class ScreenA extends Component {
-  state = {
-    loading: true,
-    data: [],
-  };
 
   render() {
-    this.getPOIsFromApiAsync(45, 7);
-
-    if (this.state.loading) {
-      return <View><Text>hey</Text></View>
-        ;
-    }
+    //this.getPOIsFromApiAsync(45, 7);
     return (
-      <Provider>
-        <ListView
-          dataSource={this.state.data}
-          renderRow={rowData => <Text>{rowData.title}</Text>}
-        />
-      </Provider>
+      <Subscribe to={[POIsContainer]}>
+		{pois => <SimpleList value={pois.state.pois} />}
+      </Subscribe>
     );
   }
 }
