@@ -1,57 +1,86 @@
 import React, { Component } from 'react';
 import { Provider } from 'unstated';
-import { Text, ListView } from 'react-native';
+import { Text, ListView, View } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const styles = {
-	fontFamily: 'sans-serif',
-	textAlign: 'center',
-};
 
-export default class App extends Component {
-	state = {
-		loading: true,
-		data: [],
-	};
+const AppNavigator = createStackNavigator({
 
-	getPOIsFromApiAsync(lat, lon) {
-		let url = "https://en.wikipedia.org/w/api.php"; 
+  ScreenA: ScreenA,
+  ScreenB: ScreenB,
 
-		let params = {
-			action: "query",
-			list: "geosearch",
-			gscoord: lat + "|" + lon,
-			gsradius: "10000",
-			gslimit: "10",
-			format: "json"
-		};
+},
 
-		url = url + "?origin=*";
-		Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
 
-		fetch(url)
-			.then(function(response){return response.json();})
-			.then(function(response) {
-				let pages = response.query.geosearch;
-				for (var place in pages) {
-					console.log(pages[place].title);
-				}
-			})
-			.catch(function(error){console.log(error);});
-	}
+  {
 
-	render() {
-		this.getPOIsFromApiAsync(45,7);
-		
-		if (this.state.loading) {
-			return <Text>hey</Text>;
-		}
-		return (
-			<Provider>
-				<ListView
-					dataSource={this.state.data}
-					renderRow={rowData => <Text>{rowData.title}</Text>}
-				/>
-			</Provider>
-		);
-	}
+    navigationOptions: {
+      headerTintColor: 'white',
+      title: 'Home',
+      headerStyle: {
+        backgroundColor: 'grey'
+      }
+    }
+  }
+);
+
+
+const TabNavigator = createBottomTabNavigator({
+
+  ScreenA: {
+
+    screen: AppNavigator
+
+  },
+
+  "Settings": {
+
+    screen: Settings,
+
+  },
+
+
+},
+
+
+  {
+
+    tabBarOptions: {
+
+
+      activeColor: '#f0edf6',
+      inactiveColor: '#3e2465',
+      activeTintColor: 'black',
+      barStyle: { backgroundColor: '#grey' },
+    }
+  },
+
+  AppNavigator.navigationOptions = {
+
+    tabBarIcon: ({ tintColor }) =>
+      (
+
+        <Ionicons
+
+          name="ios-bookmarks"
+          size={25}
+          color={tintColor} />
+      )
+
+
+  },
+
+
+);
+
+export default class App extends React.Component {
+
+  render() {
+    return (
+      //<AppNavigator /> ,
+      <TabNavigator />
+    );
+  }
 }
