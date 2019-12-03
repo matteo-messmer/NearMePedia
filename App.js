@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Provider } from 'unstated';
 import { Text, ListView, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack'
+import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import ScreenA from './ScreenA';
+import ScreenA from './Components/ScreenA';
+import ScreenB from './Components/ScreenB';
 
 
 const AppNavigator = createStackNavigator({
@@ -35,6 +36,13 @@ const TabNavigator = createBottomTabNavigator({
     screen: AppNavigator
 
   },
+  "B": {
+
+    screen: ScreenB
+
+  },
+
+
 
 },
 
