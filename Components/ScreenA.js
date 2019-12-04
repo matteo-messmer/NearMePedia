@@ -21,11 +21,18 @@ export default class ScreenA extends Component {
 				<SafeAreaView style={styles.container}>
 					<Subscribe to={[POIsContainer]}>
 						{
-							pois => <FlatList
-											data={pois.state.pois}
+							pois => {
+								const { poisList, error, loading } = pois.state;
+								
+								if (!poisList && !error && !loading) {
+									pois.getPOIsFromApiAsync(45,7);
+								}
+								return (<FlatList
+											data={poisList}
 											renderItem={({ item }) => <Item title={item.title} />}
-											keyExtractor={item => item.title}
-										/>
+											keyExtractor={item => item.pageid}
+										/>);
+							}
 						}
 					</Subscribe>
 				</SafeAreaView>
