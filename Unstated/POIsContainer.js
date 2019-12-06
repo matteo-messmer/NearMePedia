@@ -14,20 +14,21 @@ export default class POIsContainer extends Container {
 		let url = "https://en.wikipedia.org/w/api.php"; 
 
 		let params = {
-			    action: "query",
-    generator: "geosearch",
-    prop: "coordinates|pageimages",
-    ggscoord: lat + "|" + lon,
-    format: "json"
+			action: "query",
+			list: "geosearch",
+			gscoord: lat +  "|" + lon,
+			gsradius: "10000",
+			gslimit: "10",
+			format: "json"
 		};
 				
 		url = url + "?origin=*";
 		Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
  
 		try {
-			const result = await fetch(url).then(r => r.json());
+			const poisList = (await fetch(url).then(r => r.json())).query.geosearch;
 			
-			const poisList = await Object.values(result.query.pages);
+			//const poisList = await Object.values(result.query.pages);
 			//alert(result.query);
 			await this.setState({ poisList, loading: false });
 		} catch(error) {

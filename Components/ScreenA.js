@@ -37,14 +37,15 @@ export default class ScreenA extends Component {
 
     var numLat = position.coords.latitude;
     var numLon = position.coords.longitude;
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
+    
+	//console.log(position.coords.latitude);
+    //console.log(position.coords.longitude);
 
     numLat = numLat.toFixed(0);
     numLon = numLon.toFixed(0);
 
-    console.log(numLat);
-    console.log(numLon);
+    //console.log(numLat);
+    //console.log(numLon);
 
     this.setState({
       ready: true,
