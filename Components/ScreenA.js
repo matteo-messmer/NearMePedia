@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import POIsContainer from '../Unstated/POIsContainer';
 import CoordinatesContainer from '../Unstated/CoordinatesContainer';
 import { Subscribe } from 'unstated';
-import { Text, FlatList, View, SafeAreaView, StyleSheet, Image } from 'react-native';
+import { Text, FlatList, View, SafeAreaView, StyleSheet, Button, Image } from 'react-native';
 import Constants from 'expo-constants';
 import Article from './Article';
 import { getUnavailabilityReason } from 'expo/build/AR';
@@ -43,6 +43,13 @@ export default class ScreenA extends Component {
     );
   }
 }
+
+ScreenA.navigationOptions = ({navigation}) => ({
+  title: "Articles",
+  headerRight:  <Button 
+  title="Change location" 
+  onPress={() => navigation.navigate("ScreenB")}/>
+})
 
 
 const styles = StyleSheet.create({

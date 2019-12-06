@@ -28,7 +28,7 @@ export default class GeolocationContainer extends Container {
     var numLat = position.coords.latitude;
     var numLon = position.coords.longitude;
     
-	//console.log(position.coords.latitude);
+	  //console.log(position.coords.latitude);
     //console.log(position.coords.longitude);
 
     numLat = numLat.toFixed(0);

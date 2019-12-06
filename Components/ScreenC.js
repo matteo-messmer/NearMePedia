@@ -10,7 +10,7 @@ function Separator() {
 }
 
 
-export default class ScreenB extends Component {
+export default class ScreenC extends Component {
 
   render() {
 
@@ -20,38 +20,14 @@ export default class ScreenB extends Component {
         <View>
 
           <Text style={styles.title}>
-            Change the location to see other articles</Text>
-          <Separator />
-          </View>
-          <View>
-          <Text style={styles.body}>
-            Use your current location to see the articles around you!</Text>
-          <Separator />
-          <View style={styles.button}>
-            <Button
-              title="See articles around you"
-              color="black"
-              onPress={() => this.props.navigation.navigate('ScreenA')}
-            />
-          </View>
+            Reading list</Text>
           <Separator />
         </View>
-
         <View>
-
           <Text style={styles.body}>
-            Change the location to see other articles!</Text>
-          <Separator />
-          <View style={styles.button}>
-            <Button
-              title="Choose your location"
-              color="black"
-              onPress={() => this.props.navigation.navigate('DeckHome')}
-            />
-          </View>
+            You saved the following articles:</Text>
           <Separator />
         </View>
-
 
 
       </View>
@@ -59,6 +35,10 @@ export default class ScreenB extends Component {
     );
   }
 }
+
+ScreenC.navigationOptions = ({ navigation }) => ({
+  title: "Reading list",
+})
 
 
 const styles = StyleSheet.create({
@@ -95,7 +75,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 8,
     fontSize: 19,
-    
+
   },
 
   button:

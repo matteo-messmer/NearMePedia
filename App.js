@@ -7,54 +7,63 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ScreenA from './Components/ScreenA';
 import ScreenB from './Components/ScreenB';
-import SettingsScreen from './Components/SettingsScreen';
+import ScreenC from './Components/ScreenC';
+import GeolocationContainer from './Unstated/GeolocationContainer';
 
 
 const stackRoutes = {
-	ScreenA: ScreenA,
-	ScreenB: ScreenB,
+  ScreenA: ScreenA,
+  ScreenB: ScreenB,
+  ScreenC: ScreenC,
+  Geolocation: GeolocationContainer,
+
 }
 const stackOptions = {
-	initialRouteName: 'ScreenA'
+  initialRouteName: 'ScreenA'
+}
+
+const readingList = {
+  ScreenC: ScreenC,
+
 }
 const StackNavigator = createStackNavigator(stackRoutes, stackOptions)
+const ReadingList = createStackNavigator(readingList)
 
 const getIcon = (name, focused, tint) => {
-	const color = focused?tint:"grey"
-	return <Ionicons name={name} size={25} color={color} />
+  const color = focused ? tint : "grey"
+  return <Ionicons name={name} size={25} color={color} />
 }
 
 const tabRoutes = {
-	Articles: StackNavigator,
-	Settings: SettingsScreen,
+  Articles: StackNavigator,
+  'Reading list': ReadingList,
 }
 StackNavigator.navigationOptions = {
-	tabBarIcon: ({focused, tint}) => getIcon("ios-list", focused, tint),
+  tabBarIcon: ({ focused, tint }) => getIcon("ios-list", focused, tint),
 }
 
-
-SettingsScreen.navigationOptions = {
-	tabBarIcon: ({focused, tint}) => getIcon("ios-settings", focused, tint),
+ReadingList.navigationOptions = {
+  tabBarIcon: ({ focused, tint }) => getIcon("ios-bookmark", focused, tint),
 }
 const TabNavigator = createBottomTabNavigator(tabRoutes)
 
 const switchRoutes = {
-	Main: TabNavigator
+  Main: TabNavigator
 }
 const switchOptions = {
-	initialRouteName: 'Main'
+  initialRouteName: 'Main'
 }
 const AppNavigator = createSwitchNavigator(switchRoutes, switchOptions)
 
 const AppContainer = createAppContainer(AppNavigator);
 
-export default  class App extends React.Component {
+export default class App extends React.Component {
 
   render() {
     return (
-		<Provider>
-			<AppContainer /> 
-		</Provider>
+      <Provider>
+        <AppContainer />
+      </Provider>
     );
   }
 }
