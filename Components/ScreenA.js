@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import POIsContainer from '../Unstated/POIsContainer';
 import { Subscribe } from 'unstated';
-import { Text, FlatList, View, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, FlatList, View, SafeAreaView, StyleSheet, Image } from 'react-native';
 import Constants from 'expo-constants';
+import Article from './Article';
 
-
-function Item({ title }) {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-}
 
 export default class ScreenA extends Component {
 
@@ -64,8 +57,6 @@ export default class ScreenA extends Component {
     this.setState({ error: err.message });
   }
 
-
-
   render() {
 
     //this.getPOIsFromApiAsync(45, 7);
@@ -97,15 +88,14 @@ export default class ScreenA extends Component {
               const { poisList, error, loading } = pois.state;
 
               if (!poisList && !error && !loading) {
-                pois.getPOIsFromApiAsync(46, 11);
+                pois.getPOIsFromApiAsync(46.50,11.35);
               }
               return (
                 <FlatList
                   data={poisList}
-                  renderItem={({ item }) => <Item title={item.title} />}
-                  keyExtractor={item => item.pageid}
+                  renderItem={({ item }) => <Article article={item} />}
+                  keyExtractor={item => item.title}
                 />
-
               );
 
             }
@@ -121,8 +111,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  item: {
-    backgroundColor: '#4463a0',
+  article: {
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
