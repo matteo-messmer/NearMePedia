@@ -1,85 +1,52 @@
 import React, { Component } from 'react';
 import { Provider } from 'unstated';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { Text, ListView, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ScreenA from './Components/ScreenA';
 import ScreenB from './Components/ScreenB';
+import SettingsScreen from './Components/SettingsScreen';
 
 
-const AppNavigator = createStackNavigator({
+const stackRoutes = {
+	ScreenA: ScreenA,
+	ScreenB: ScreenB,
+}
+const stackOptions = {
+	initialRouteName: 'ScreenA'
+}
+const StackNavigator = createStackNavigator(stackRoutes, stackOptions)
 
-  Home: ScreenA,
-  ScreenB: ScreenB,
+const getIcon = (name, focused, tint) => {
+	const color = focused?tint:"grey"
+	return <Ionicons name={name} size={25} color={color} />
+}
 
-},
-
-
-  {
-
-    navigationOptions: {
-      headerTintColor: 'white',
-      title: 'Home',
-      headerStyle: {
-        backgroundColor: 'grey'
-      }
-    }
-  }
-);
-/*
-
-const TabNavigator = createBottomTabNavigator({
-
-  ScreenA: {
-
-    screen: AppNavigator
-
-  },
-  "B": {
-
-    screen: ScreenB
-
-  },
+const tabRoutes = {
+	Articles: StackNavigator,
+	Settings: SettingsScreen,
+}
+StackNavigator.navigationOptions = {
+	tabBarIcon: ({focused, tint}) => getIcon("ios-list", focused, tint),
+}
 
 
+SettingsScreen.navigationOptions = {
+	tabBarIcon: ({focused, tint}) => getIcon("ios-settings", focused, tint),
+}
+const TabNavigator = createBottomTabNavigator(tabRoutes)
 
-},
+const switchRoutes = {
+	Main: TabNavigator
+}
+const switchOptions = {
+	initialRouteName: 'Main'
+}
+const AppNavigator = createSwitchNavigator(switchRoutes, switchOptions)
 
-
-  {
-
-    tabBarOptions: {
-
-
-      activeColor: '#f0edf6',
-      inactiveColor: '#3e2465',
-      activeTintColor: 'black',
-      barStyle: { backgroundColor: '#grey' },
-    }
-  },
-
-  AppNavigator.navigationOptions = {
-
-    tabBarIcon: ({ tintColor }) =>
-      (
-
-        <Ionicons
-
-          name="ios-bookmarks"
-          size={25}
-          color={tintColor} />
-      )
-
-
-  },
-
-
-);
-*/
 const AppContainer = createAppContainer(AppNavigator);
-
 
 export default  class App extends React.Component {
 
@@ -88,7 +55,6 @@ export default  class App extends React.Component {
 		<Provider>
 			<AppContainer /> 
 		</Provider>
-      //<TabNavigator />
     );
   }
 }
