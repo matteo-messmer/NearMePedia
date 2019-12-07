@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import POIsContainer from '../Unstated/POIsContainer';
 import { Subscribe } from 'unstated';
-import { Text, ListView, View, StyleSheet, Button } from 'react-native';
+import { Text, ListView, View, StyleSheet, Button, TextInput, ScrollView } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import Constants from 'expo-constants';
 
@@ -12,53 +12,95 @@ function Separator() {
 
 export default class ScreenB extends Component {
 
+  state = {
+    location: '',
+  }
+
+  aroundYou = (lan, lon) => {
+
+    this.props.navigation.navigate('ScreenA', { lan, lon });
+  }
+
   render() {
 
     return (
 
-      <View style={styles.container}>
-        <View>
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+          <View>
 
-          <Text style={styles.title}>
-            Change the location to see other articles</Text>
-          <Separator />
+            <Text style={styles.title}>
+              Change the location to see other articles</Text>
+            <Separator />
           </View>
           <View>
-          <Text style={styles.body}>
-            Use your current location to see the articles around you!</Text>
-          <Separator />
-          <View style={styles.button}>
-            <Button
-              title="See articles around you"
-              color="black"
-              onPress={() => this.props.navigation.navigate('ScreenA')}
-            />
+            <Text style={styles.body}>
+              Use your current location to see the articles around you!</Text>
+            <View style={styles.button}>
+              <Button
+                title="See articles around you"
+                color="black"
+                aroundYou={() => this.showDetail(lan, lon)}
+              />
+            </View>
+            <Separator />
           </View>
-          <Separator />
-        </View>
 
-        <View>
+          <View>
 
-          <Text style={styles.body}>
-            Change the location to see other articles!</Text>
-          <Separator />
-          <View style={styles.button}>
-            <Button
-              title="Choose your location"
-              color="black"
-              onPress={() => this.props.navigation.navigate('DeckHome')}
-            />
+            <Text style={styles.body}>
+              Change the location to see other articles!</Text>
+
+            <View style={styles.button}>
+              <Button
+                title="Choose your location"
+                color="black"
+                onPress={() => this.props.navigation.navigate('DeckHome')}
+              />
+            </View>
+            <Separator />
           </View>
-          <Separator />
-        </View>
 
+          <View>
 
+            <Text style={styles.body}>
+              Add a new location</Text>
 
-      </View>
+            <Text style={styles.body}>Street number: </Text>
+            <TextInput
+              style={styles.input}
+              value={this.state.location}
+            //onChangeText={this.handlePhoneChange} 
+            />
+
+            <Text style={styles.body}>Address: </Text>
+            <TextInput
+              style={styles.input}
+              value={this.state.location}
+            //onChangeText={this.handlePhoneChange} 
+            />
+
+            <View style={styles.button}>
+
+              <Button
+                title="Add location"
+                color="black"
+                onPress={() => this.props.navigation.navigate('DeckHome')}
+              />
+            </View>
+            <Separator />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
 
     );
   }
 }
+
+ScreenB.navigationOptions = ({ navigation }) => ({
+  title: "Locations",
+
+})
 
 
 const styles = StyleSheet.create({
@@ -95,8 +137,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 8,
     fontSize: 19,
-    
   },
+
 
   button:
   {
@@ -114,5 +156,12 @@ const styles = StyleSheet.create({
     borderBottomColor: 'black',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+
+  input: {
+    borderColor: 'black',
+    borderWidth: 1,
+    padding: 5,
+    margin: 10
+  }
 
 });

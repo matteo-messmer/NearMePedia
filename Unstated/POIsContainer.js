@@ -40,4 +40,15 @@ export default class POIsContainer extends Container {
 	clear = () => {
 		this.setState({ pois: [] });
 	};
+
+	saveArticle = () => {
+		this.setState(state => ({
+			pois: [...state.pois, state.newItemName],
+			newItemName: ""
+		  }));
+	}
+
+	setNewItemName = event => {
+		this.setState({ newItemName: event.target.value });
+	  };
 }
