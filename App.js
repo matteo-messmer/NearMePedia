@@ -9,7 +9,7 @@ import ScreenA from './Components/ScreenA';
 import ScreenB from './Components/ScreenB';
 import ScreenC from './Components/ScreenC';
 import AddLocation from './Components/AddLocation';
-
+import MapScreen from './Components/MapScreen'
 
 
 const stackRoutes = {
@@ -17,6 +17,7 @@ const stackRoutes = {
   ScreenB: ScreenB,
   ScreenC: ScreenC,
   AddLocation: AddLocation,
+  MapScreen: MapScreen,
 
 }
 const stackOptions = {
@@ -27,8 +28,15 @@ const readingList = {
   ScreenC: ScreenC,
 
 }
+
+const mapScreen = {
+
+  MapScreen: MapScreen,
+}
+
 const StackNavigator = createStackNavigator(stackRoutes, stackOptions)
 const ReadingList = createStackNavigator(readingList)
+const Map = createStackNavigator(mapScreen)
 
 const getIcon = (name, focused, tint) => {
   const color = focused ? tint : "grey"
@@ -38,6 +46,7 @@ const getIcon = (name, focused, tint) => {
 const tabRoutes = {
   Articles: StackNavigator,
   'Reading list': ReadingList,
+  'Map' : Map,
 }
 StackNavigator.navigationOptions = {
   tabBarIcon: ({ focused, tint }) => getIcon("ios-list", focused, tint),
@@ -46,6 +55,11 @@ StackNavigator.navigationOptions = {
 ReadingList.navigationOptions = {
   tabBarIcon: ({ focused, tint }) => getIcon("ios-bookmark", focused, tint),
 }
+
+Map.navigationOptions = {
+  tabBarIcon: ({ focused, tint }) => getIcon("ios-map", focused, tint),
+}
+
 const TabNavigator = createBottomTabNavigator(tabRoutes)
 
 const switchRoutes = {

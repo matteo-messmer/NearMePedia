@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 
-export default class App extends React.Component {
+export default class MapScreen extends React.Component {
   render() {
     return (
       <MapView
@@ -25,3 +25,7 @@ export default class App extends React.Component {
     );
   }
 }
+
+MapScreen.navigationOptions = ({ navigation }) => ({
+  title: "Maps",
+})

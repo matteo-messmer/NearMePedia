@@ -56,7 +56,7 @@ export default class AddLocation extends Component {
                             <Button
                                 title="Add location"
                                 color="black"
-                                onPress={() => this.props.navigation.navigate('DeckHome')}
+                                onPress={() => this.getData}
                             />
                         </View>
                         <Separator />
