@@ -8,14 +8,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ScreenA from './Components/ScreenA';
 import ScreenB from './Components/ScreenB';
 import ScreenC from './Components/ScreenC';
-import GeolocationContainer from './Unstated/GeolocationContainer';
+import AddLocation from './Components/AddLocation';
+
 
 
 const stackRoutes = {
   ScreenA: ScreenA,
   ScreenB: ScreenB,
   ScreenC: ScreenC,
-  Geolocation: GeolocationContainer,
+  AddLocation: AddLocation,
 
 }
 const stackOptions = {

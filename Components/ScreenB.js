@@ -4,6 +4,7 @@ import { Subscribe } from 'unstated';
 import { Text, ListView, View, StyleSheet, Button, TextInput, ScrollView } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import Constants from 'expo-constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function Separator() {
   return <View style={styles.separator} />;
@@ -12,9 +13,7 @@ function Separator() {
 
 export default class ScreenB extends Component {
 
-  state = {
-    location: '',
-  }
+  
 
   aroundYou = (lan, lon) => {
 
@@ -27,71 +26,45 @@ export default class ScreenB extends Component {
 
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <View>
+          <View >
 
             <Text style={styles.title}>
               Change the location to see other articles</Text>
             <Separator />
           </View>
-          <View>
-            <Text style={styles.body}>
-              Use your current location to see the articles around you!</Text>
-            <View style={styles.button}>
-              <Button
-                title="See articles around you"
-                color="black"
-                aroundYou={() => this.showDetail(lan, lon)}
-              />
-            </View>
-            <Separator />
+
+
+
+          <View style={styles.containerb}>
+            <TouchableOpacity >
+              <View style={styles.button}>
+                <Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>GPS</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("AddLocation")}>
+              <View style={styles.button}>
+                <Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Add location</Text>
+              </View>
+            </TouchableOpacity>
           </View>
 
-          <View>
 
-            <Text style={styles.body}>
-              Change the location to see other articles!</Text>
+          <Separator />
 
-            <View style={styles.button}>
-              <Button
-                title="Choose your location"
-                color="black"
-                onPress={() => this.props.navigation.navigate('DeckHome')}
-              />
-            </View>
-            <Separator />
-          </View>
 
           <View>
 
-            <Text style={styles.body}>
-              Add a new location</Text>
+            <Text style={styles.title}>
+              Here's a list of locations</Text>
 
-            <Text style={styles.body}>Street number: </Text>
-            <TextInput
-              style={styles.input}
-              value={this.state.location}
-            //onChangeText={this.handlePhoneChange} 
-            />
-
-            <Text style={styles.body}>Address: </Text>
-            <TextInput
-              style={styles.input}
-              value={this.state.location}
-            //onChangeText={this.handlePhoneChange} 
-            />
-
-            <View style={styles.button}>
-
-              <Button
-                title="Add location"
-                color="black"
-                onPress={() => this.props.navigation.navigate('DeckHome')}
-              />
-            </View>
+            
             <Separator />
           </View>
+
+          
         </ScrollView>
-      </SafeAreaView>
+      </SafeAreaView >
 
     );
   }
@@ -109,9 +82,17 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flex: 1,
     backgroundColor: '#eeeeee',
-    // justifyContent: 'center',
+    //justifyContent: 'space-between',
     textAlign: 'center',
   },
+
+  containerb: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	},
+
+  
   article: {
     padding: 20,
     marginVertical: 8,
@@ -150,7 +131,10 @@ const styles = StyleSheet.create({
     color: "black",
     backgroundColor: '#81b9bf',
     borderColor: '#52898f',
+    height: 50,
+    width: 150,
   },
+
   separator: {
     marginVertical: 4,
     borderBottomColor: 'black',
