@@ -7,6 +7,7 @@ import Constants from 'expo-constants';
 import Article from './Article';
 import { getUnavailabilityReason } from 'expo/build/AR';
 import { getOrientationAsync } from 'expo/build/ScreenOrientation/ScreenOrientation';
+import styles from '../Style';
 
 
 export default class ScreenA extends Component {
@@ -46,29 +47,3 @@ ScreenA.navigationOptions = ({navigation}) => ({
   title="Change location" 
   onPress={() => navigation.navigate("ScreenB")}/>
 })
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-
-  },
-  article: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 10,
-  },
-
-  background: {
-    backgroundColor: '#eeeeee',
-    fontSize: 17,
-    textAlign: 'center',
-    paddingTop: 10,
-    marginLeft: 1,
-  },
-  title: {
-    fontSize: 32,
-  },
-
-});

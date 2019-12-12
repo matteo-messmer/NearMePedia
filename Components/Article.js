@@ -3,6 +3,7 @@ import { Card, Button } from 'react-native-elements';
 import { Linking, Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import POIsContainer from '../Unstated/POIsContainer';
 import { Subscribe } from 'unstated';
+import styles from '../Style';
 
 export default class Article extends Component {
 	loadInBrowser = (id) => {
@@ -48,44 +49,3 @@ export default class Article extends Component {
 		);
 	}
 }/*this.props.article.thumbnail.source.replace(/[0-9]+px/g, '512px')*/
-
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between'
-	},
-	button:
-	{
-		alignSelf: 'stretch',
-		borderWidth: 1,
-		padding: 12,
-		borderRadius: 8,
-		margin: 10,
-		color: "black",
-		backgroundColor: '#81b9bf',
-		borderColor: '#52898f',
-		height: 50,
-		width: 210
-	},
-
-	saveButton:
-	{
-		alignSelf: 'stretch',
-		borderWidth: 1,
-		padding: 12,
-		borderRadius: 8,
-		margin: 10,
-		color: "black",
-		backgroundColor: '#52898f',
-		borderColor: '#225c62',
-		height: 50,
-		width: 100
-	},
-
-
-
-
-
-})
