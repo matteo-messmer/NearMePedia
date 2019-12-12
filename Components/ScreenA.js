@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import POIsContainer from '../Unstated/POIsContainer';
-import CoordinatesContainer from '../Unstated/CoordinatesContainer';
+import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
 import { Text, FlatList, View, SafeAreaView, StyleSheet, Button, Image } from 'react-native';
 import Constants from 'expo-constants';
@@ -17,12 +17,12 @@ export default class ScreenA extends Component {
       <SafeAreaView style={styles.container}>
 
         <Text style={styles.background}>Here's a list of locations around your selected position</Text>
-        <Subscribe to={[POIsContainer, CoordinatesContainer]}>
+        <Subscribe to={[POIsContainer, PositionContainer]}>
           {
             (pois, coords) => {
-              const { poisList, error, loading } = pois.state;
+              const { nearLocations, error, loading } = pois.state;
 
-              if (!poisList && !error && !loading) {
+              if (!nearLocations && !error && !loading) {
                 if (!coords.state.lat || !coords.state.lon) {
                   coords.setCoordinates({ lat: 46.2595667, lon: 11.0636139 });
                 } else {
@@ -31,7 +31,7 @@ export default class ScreenA extends Component {
               }
               return (
                 <FlatList style={styles.background}
-                  data={poisList}
+                  data={nearLocations}
                   renderItem={({ item }) => <Article article={item} distance={coords.distance(item.lat, item.lon)} />}
                   keyExtractor={item => item.title}
                 />

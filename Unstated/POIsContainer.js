@@ -3,7 +3,8 @@ import { Container } from "unstated";
 export default class POIsContainer extends Container {
 	
 	state = {
-		poisList: null, 
+		savedLocations: [],
+		nearLocations: null, 
 		error: null,
 		loading: false,
 	};
@@ -26,11 +27,8 @@ export default class POIsContainer extends Container {
 		Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
  
 		try {
-			const poisList = (await fetch(url).then(r => r.json())).query.geosearch;
-			
-			//const poisList = await Object.values(result.query.pages);
-			//alert(result.query);
-			await this.setState({ poisList, loading: false });
+			const nearLocations = (await fetch(url).then(r => r.json())).query.geosearch;
+			await this.setState({ nearLocations, loading: false });
 		} catch(error) {
 			alert(error);
 			await this.setState({ error, loading: false });
@@ -41,14 +39,7 @@ export default class POIsContainer extends Container {
 		this.setState({ pois: [] });
 	};
 
-	saveArticle = () => {
-		this.setState(state => ({
-			pois: [...state.pois, state.newItemName],
-			newItemName: ""
-		  }));
+	saveLocation = (coords) => {
+		this.setState(state => ({savedLocations: [...state.savedLocations, coords]}));
 	}
-
-	setNewItemName = event => {
-		this.setState({ newItemName: event.target.value });
-	  };
 }

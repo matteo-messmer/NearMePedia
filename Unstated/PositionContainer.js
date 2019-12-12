@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import { Container } from "unstated";
 
-export default class CoordinatesContainer extends Container {
+export default class PositionContainer extends Container {
 	
     state = {
 		lat:null, 
 		lon:null
     };
+
+	geoLocate = async () => {	
+		await navigator.geolocation.getCurrentPosition(
+			position => {
+				this.setState({ lat: position.coords.latitude, lon: position.coords.longitude });
+			},
+			error => Alert.alert(error.message),
+			{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+		);
+	}
 	
 	setCoordinates = async (coords) => {
 		await this.setState({	lat:coords.lat, lon:coords.lon});
