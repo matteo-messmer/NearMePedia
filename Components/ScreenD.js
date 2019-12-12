@@ -40,7 +40,7 @@ export default class ScreenD extends Component {
     if (this.state.errorMessage) {
       text = this.state.errorMessage;
     } else if (this.state.geo) {
-      text = JSON.stringify(this.state.geo.city);
+      text = JSON.stringify(this.state.geo);
     }
 
     return (

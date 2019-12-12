@@ -19,7 +19,7 @@ export default class Article extends Component {
 
 				image={{ uri: 'https://i.etsystatic.com/10589613/r/il/2b6a3a/1359294046/il_570xN.1359294046_3q07.jpg' }}>
 				<Text>Distance: {this.props.distance.toFixed(1)} Km</Text>
-				<View style={styles.container}>
+				<View style = {styles.containerb}>
 					<TouchableOpacity onPress={() => this.loadInBrowser(this.props.article.pageid)}>
 						<View style={styles.button}>
 							<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Open</Text>
