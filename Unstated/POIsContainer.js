@@ -36,7 +36,7 @@ export default class POIsContainer extends Container {
 	}
 	
 	clear = () => {
-		this.setState({ pois: [] });
+		this.setState({ nearLocations: null });
 	};
 
 	saveLocation = (coords, name) => {

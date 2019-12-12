@@ -37,7 +37,6 @@ export default class ScreenB extends Component {
 						<TouchableOpacity onPress={() => {
 																					position.geoLocate(() => {
 																						pois.clear();
-																						pois.getPOIsFromApiAsync(position.state.lat, position.state.lon);
 																						this.props.navigation.navigate("ScreenA");
 																					});
 																				}
