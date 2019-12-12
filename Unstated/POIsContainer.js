@@ -39,7 +39,7 @@ export default class POIsContainer extends Container {
 		this.setState({ pois: [] });
 	};
 
-	saveLocation = (coords) => {
-		this.setState(state => ({savedLocations: [...state.savedLocations, coords]}));
+	saveLocation = (coords, name) => {
+		this.setState(state => ({savedLocations: [...state.savedLocations, {coords, name}]}));
 	}
 }

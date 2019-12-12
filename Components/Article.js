@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'react-native-elements';
 import { Linking, Text, StyleSheet, View, TouchableOpacity } from 'react-native';
-
-function saveArticle() {
-	this.setState({ save: true });
-  }
+import POIsContainer from '../Unstated/POIsContainer';
+import { Subscribe } from 'unstated';
 
 export default class Article extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			save: false
-		}
-	}
-
 	loadInBrowser = (id) => {
 		Linking.openURL('http://en.wikipedia.org/?curid=' + id).catch(err => console.error("Couldn't load page", err));
 	};
@@ -34,15 +24,21 @@ export default class Article extends Component {
 							<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Open</Text>
 						</View>
 					</TouchableOpacity>
+					
+					<Subscribe to={[POIsContainer]}>
+						{
+							pois => {
 
-					<TouchableOpacity onPress={() => this.saveArticle}>
+								<TouchableOpacity onPress={() => pois.saveLocation({coords:{lat: this.props.article.lat, lon: this.props.article.lon}, name: this.props.article.title})}>
 
-						<View style={styles.saveButton}>
-							<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>{this.state.save ? "remove" : "Save "}</Text>
-						</View>
+									<View style={styles.saveButton}>
+										<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Save</Text>
+									</View>
 
-					</TouchableOpacity>
-
+								</TouchableOpacity>
+							}
+						}
+					</Subscribe>
 				</View>
 
 			</Card>
