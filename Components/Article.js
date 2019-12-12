@@ -30,7 +30,7 @@ export default class Article extends Component {
 						{
 							pois => {
 								return(
-									<TouchableOpacity onPress={() => pois.saveLocation({lat: this.props.article.lat, lon: this.props.article.lon}, this.props.article.title)}>
+									<TouchableOpacity onPress={() => pois.saveLocation(this.props.article)}>
 
 										<View style={styles.saveButton}>
 											<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Save</Text>

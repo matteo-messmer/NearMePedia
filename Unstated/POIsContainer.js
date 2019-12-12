@@ -39,8 +39,7 @@ export default class POIsContainer extends Container {
 		this.setState({ nearLocations: null });
 	};
 
-	saveLocation = async (coords, name) => {
-		await this.setState(state => ({savedLocations: [...state.savedLocations, {coords: coords, name: name}]}));
-		alert(name);
+	saveLocation = async (article) => {
+		await this.setState(state => ({savedLocations: [...state.savedLocations, article]}));
 	}
 }

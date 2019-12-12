@@ -46,7 +46,7 @@ export default class ScreenD extends Component {
     }
 
     //let location = await Location.getCurrentPositionAsync({});
-    //let location = { latitude: 46.2595667, longitude: 11.0636139 };
+    let location = { latitude: 46.2595667, longitude: 11.0636139 };
     let geo = await Location.reverseGeocodeAsync(location);
     this.setState({ geo });
   };
