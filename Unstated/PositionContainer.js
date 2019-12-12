@@ -4,14 +4,15 @@ import { Container } from "unstated";
 export default class PositionContainer extends Container {
 	
     state = {
-		lat:null, 
-		lon:null
+		lat:0, 
+		lon:0
     };
 
-	geoLocate = async () => {	
+	geoLocate = async (callback) => {	
 		await navigator.geolocation.getCurrentPosition(
 			position => {
 				this.setState({ lat: position.coords.latitude, lon: position.coords.longitude });
+				callback();
 			},
 			error => Alert.alert(error.message),
 			{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }

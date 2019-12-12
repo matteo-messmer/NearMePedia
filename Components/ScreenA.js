@@ -23,11 +23,7 @@ export default class ScreenA extends Component {
               const { nearLocations, error, loading } = pois.state;
 
               if (!nearLocations && !error && !loading) {
-                if (!position.state.lat || !position.state.lon) {
-                  position.setCoordinates({ lat: 46.2595667, lon: 11.0636139 });
-                } else {
                   pois.getPOIsFromApiAsync(position.state.lat, position.state.lon);
-                }
               }
               return (
                 <FlatList style={styles.background}
