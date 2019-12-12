@@ -3,6 +3,22 @@ import { Platform, Text, View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import { FlatList } from 'react-native-gesture-handler';
+
+const DATA = [
+    {
+      latitude: 46.2595667,
+      longitude: 11.0636139,
+    },
+    {
+        latitude: 46.2595667,
+        longitude: 11.0636139,
+    },
+    {
+        latitude: 46.2595667,
+        longitude: 11.0636139,
+    },
+  ];
 
 export default class ScreenD extends Component {
   state = {
@@ -30,7 +46,7 @@ export default class ScreenD extends Component {
     }
 
     //let location = await Location.getCurrentPositionAsync({});
-    let location = { latitude: 46.2595667, longitude: 11.0636139 };
+    //let location = { latitude: 46.2595667, longitude: 11.0636139 };
     let geo = await Location.reverseGeocodeAsync(location);
     this.setState({ geo });
   };
@@ -40,7 +56,11 @@ export default class ScreenD extends Component {
     if (this.state.errorMessage) {
       text = this.state.errorMessage;
     } else if (this.state.geo) {
-      text = JSON.stringify(this.state.geo);
+
+        <FlatList style= {backgroundColor = "pink"}
+            data = {(this.state.geo[0].city)}
+       > </FlatList>
+      text = (this.state.geo[0].city);
     }
 
     return (
