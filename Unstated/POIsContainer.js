@@ -40,6 +40,10 @@ export default class POIsContainer extends Container {
 	};
 
 	saveLocation = async (article) => {
-		await this.setState(state => ({savedLocations: [...state.savedLocations, article]}));
+		if(this.state.savedLocations.some(l => l.name === article.name)){
+			alert('Article already in the reading list');
+		} else {
+			await this.setState(state => ({savedLocations: [...state.savedLocations, article]}));
+		}
 	}
 }

@@ -13,7 +13,7 @@ export default class MapScreen extends React.Component {
 			{
 				(pois, position) => {
 					const markers = pois.state.savedLocations.map((poi) => <Marker
-																								  coordinate={{ latitude: poi.coords.lat, longitude: poi.coords.lon}}
+																								  coordinate={{ latitude: poi.lat, longitude: poi.lon}}
 																								  title={poi.name}
 																								/>);
 					
