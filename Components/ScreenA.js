@@ -19,20 +19,20 @@ export default class ScreenA extends Component {
         <Text style={styles.background}>Here's a list of locations around your selected position</Text>
         <Subscribe to={[POIsContainer, PositionContainer]}>
           {
-            (pois, coords) => {
+            (pois, position) => {
               const { nearLocations, error, loading } = pois.state;
 
               if (!nearLocations && !error && !loading) {
-                if (!coords.state.lat || !coords.state.lon) {
-                  coords.setCoordinates({ lat: 46.2595667, lon: 11.0636139 });
+                if (!position.state.lat || !position.state.lon) {
+                  position.setCoordinates({ lat: 46.2595667, lon: 11.0636139 });
                 } else {
-                  pois.getPOIsFromApiAsync(coords.state.lat, coords.state.lon);
+                  pois.getPOIsFromApiAsync(position.state.lat, position.state.lon);
                 }
               }
               return (
                 <FlatList style={styles.background}
                   data={nearLocations}
-                  renderItem={({ item }) => <Article article={item} distance={coords.distance(item.lat, item.lon)} />}
+                  renderItem={({ item }) => <Article article={item} distance={position.distance(item.lat, item.lon)} />}
                   keyExtractor={item => item.title}
                 />
               );

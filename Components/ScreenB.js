@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import POIsContainer from '../Unstated/POIsContainer';
+import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
 import { Text, ListView, View, StyleSheet, Button, TextInput, ScrollView } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -12,13 +13,6 @@ function Separator() {
 
 
 export default class ScreenB extends Component {
-
-  
-
-  aroundYou = (lan, lon) => {
-
-    this.props.navigation.navigate('ScreenA', { lan, lon });
-  }
 
   render() {
 
@@ -36,11 +30,25 @@ export default class ScreenB extends Component {
 
 
           <View style={styles.containerb}>
-            <TouchableOpacity >
-              <View style={styles.button}>
-                <Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>GPS</Text>
-              </View>
-            </TouchableOpacity>
+			<Subscribe to={[PositionContainer, POIsContainer]}>
+				{
+					(position, pois) => {
+						return(
+						<TouchableOpacity onPress={() => {
+																					position.geoLocate();
+																					pois.clear();
+																					pois.getPOIsFromApiAsync(position.state.lat, position.state.lon);
+																					this.props.navigation.navigate("ScreenA");
+																				}
+																	}>
+							<View style={styles.button}>
+								<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>GPS</Text>
+							</View>
+						</TouchableOpacity>
+						);
+					}
+				}
+			</Subscribe>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate("AddLocation")}>
               <View style={styles.button}>
