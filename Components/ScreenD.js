@@ -8,7 +8,7 @@ export default class ScreenD extends Component {
   state = {
     location: null,
     errorMessage: null,
-    geo: null,
+    geo: null
   };
 
   componentWillMount() {
@@ -40,7 +40,7 @@ export default class ScreenD extends Component {
     if (this.state.errorMessage) {
       text = this.state.errorMessage;
     } else if (this.state.geo) {
-      text = JSON.stringify(this.state.geo);
+      text = JSON.stringify(this.state.geo.city);
     }
 
     return (
