@@ -4,39 +4,10 @@ import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import { FlatList } from 'react-native-gesture-handler';
+import LocationItem from './LocationItem';
 
-
-
-function Item({location}) {
-    let geo =  Location.reverseGeocodeAsync(location).then(() => {
-    return (
-        <View style={styles.item}>
-            <Text style={styles.title}> {geo[0].city} </Text>
-        </View>
-    );});
-}
 
 export default class ScreenD extends Component {
-
-    state = {
-        location: null,
-        errorMessage: null,
-        geo: null
-    };
-
-    _getLocationAsync = async (location) => {
-        let { status } = await Permissions.askAsync(Permissions.LOCATION);
-        if (status !== 'granted') {
-            this.setState({
-                errorMessage: 'Permission to access location was denied',
-            });
-        }
-
-    //let location = await Location.getCurrentPositionAsync({});
-    let location = { latitude: 46.2595667, longitude: 11.0636139 };
-    let geo = await Location.reverseGeocodeAsync(location);
-    this.setState({ geo });
-  };
 
     render() {
         const DATA = [
@@ -55,19 +26,14 @@ export default class ScreenD extends Component {
         ];
 
         let text = 'Waiting..';
-        if (this.state.errorMessage) {
-            text = this.state.errorMessage;
-        } else if (this.state.geo) {
-            text = (this.state.geo[0].city);
-        }
 
         return (
             <View style={styles.container}>
                 <Text style={styles.paragraph}>{text}</Text>
                 <FlatList
                     data={DATA}
-                    renderItem={({item}) => <Item location={item} />}
-                    keyExtractor={item => item.location}
+                    renderItem={(item) => <LocationItem location={item} />}
+                    keyExtractor={item => item.latitude.toString()}
                 />
             </View>
         );
