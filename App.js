@@ -9,7 +9,9 @@ import ScreenA from './Components/ScreenA';
 import ScreenB from './Components/ScreenB';
 import ScreenC from './Components/ScreenC';
 import AddLocation from './Components/AddLocation';
-import MapScreen from './Components/MapScreen'
+import MapScreen from './Components/MapScreen';
+import ScreenD from './Components/ScreenD';
+
 
 
 const stackRoutes = {
@@ -18,6 +20,7 @@ const stackRoutes = {
   ScreenC: ScreenC,
   AddLocation: AddLocation,
   MapScreen: MapScreen,
+  ScreenD: ScreenD,
 
 }
 const stackOptions = {
