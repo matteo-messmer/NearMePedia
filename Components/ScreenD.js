@@ -8,12 +8,12 @@ import { FlatList } from 'react-native-gesture-handler';
 
 
 function Item({location}) {
-    let geo =  Location.reverseGeocodeAsync(location);
+    let geo =  Location.reverseGeocodeAsync(location).then(() => {
     return (
         <View style={styles.item}>
             <Text style={styles.title}> {geo[0].city} </Text>
         </View>
-    );
+    );});
 }
 
 export default class ScreenD extends Component {
