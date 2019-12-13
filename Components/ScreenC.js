@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import POIsContainer from '../Unstated/POIsContainer';
+import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
-import { CoordinatesContainer  } from 'unstated';
 import { Text, ListView, View, StyleSheet, Button} from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import Constants from 'expo-constants';
@@ -25,11 +24,11 @@ export default class ScreenC extends Component {
 		<SafeAreaView style={styles.container}>
 
 			<Text style={styles.background}>Here's a list of locations around your selected position</Text>
-			<Subscribe to={[POIsContainer]}>
+			<Subscribe to={[ArticlesContainer]}>
 				{
 					(pois) => {
 						return (
-							<ArticlesList data={pois.state.savedLocations} />
+							<ArticlesList data={pois.state.savedArticles} />
 						);
 					}
 				}

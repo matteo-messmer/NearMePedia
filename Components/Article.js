@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'react-native-elements';
 import { Linking, Text, StyleSheet, View, TouchableOpacity } from 'react-native';
-import POIsContainer from '../Unstated/POIsContainer';
+import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
 import styles from '../Style';
 
@@ -26,18 +26,26 @@ export default class Article extends Component {
 						</View>
 					</TouchableOpacity>
 					
-					<Subscribe to={[POIsContainer]}>
+					<Subscribe to={[ArticlesContainer]}>
 						{
 							pois => {
-								return(
-									<TouchableOpacity onPress={() => pois.saveLocation(this.props.article)}>
+								if(!pois.state.savedArticles.some(l => l.title === this.props.article.title)) {
+									return(
+										<TouchableOpacity onPress={() => pois.saveArticle(this.props.article)}>
 
+											<View style={styles.saveButton}>
+												<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Save</Text>
+											</View>
+
+										</TouchableOpacity>
+									);
+								} else {
+									return (
 										<View style={styles.saveButton}>
-											<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Save</Text>
+											<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Saved!</Text>
 										</View>
-
-									</TouchableOpacity>
-								);
+									);
+								}
 							}
 						}
 					</Subscribe>

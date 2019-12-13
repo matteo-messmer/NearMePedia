@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import POIsContainer from '../Unstated/POIsContainer';
+import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
 import { Text, ListView, View, StyleSheet, Button, TextInput, ScrollView } from 'react-native';
@@ -31,7 +31,7 @@ export default class ScreenB extends Component {
 
 
           <View style={styles.containerb}>
-			<Subscribe to={[PositionContainer, POIsContainer]}>
+			<Subscribe to={[PositionContainer, ArticlesContainer]}>
 				{
 					(position, pois) => {
 						return(

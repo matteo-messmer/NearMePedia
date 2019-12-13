@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-import POIsContainer from '../Unstated/POIsContainer';
+import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
 
 export default class MapScreen extends React.Component {
   render() {
     return (
-		<Subscribe to={[POIsContainer, PositionContainer]}>
+		<Subscribe to={[ArticlesContainer, PositionContainer]}>
 			{
 				(pois, position) => {
-					const markers = pois.state.savedLocations.map((poi) => <Marker
+					const markers = pois.state.savedArticles.map((poi) => <Marker
 																								  coordinate={{ latitude: poi.lat, longitude: poi.lon}}
-																								  title={poi.name}
+																								  title={poi.title}
+																								  key={poi.title}
 																								/>);
 					
 					return(
@@ -25,8 +26,8 @@ export default class MapScreen extends React.Component {
 						initialRegion={{
 						  latitude: position.state.lat,
 						  longitude: position.state.lon,
-						  latitudeDelta: 0.0922,
-						  longitudeDelta: 0.0421,
+						  latitudeDelta: 1,
+						  longitudeDelta: 1,
 						}}>
 						{
 							markers

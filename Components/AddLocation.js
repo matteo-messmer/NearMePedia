@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import POIsContainer from '../Unstated/POIsContainer';
+import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
 import { CoordinatesContainer } from 'unstated';
 import { Text, ListView, View, StyleSheet, Button, TextInput } from 'react-native';

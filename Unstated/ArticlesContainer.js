@@ -1,15 +1,15 @@
 import { Container } from "unstated";
 
-export default class POIsContainer extends Container {
+export default class ArticlesContainer extends Container {
 	
 	state = {
-		savedLocations: [],
-		nearLocations: null, 
+		savedArticles: [],
+		nearArticles: null, 
 		error: null,
 		loading: false,
 	};
   
-	getPOIsFromApiAsync = async (lat, lon) => {
+	getArticlesFromApiAsync = async (lat, lon) => {
 		await this.setState({ loading: true });
 		
 		let url = "https://en.wikipedia.org/w/api.php"; 
@@ -27,8 +27,8 @@ export default class POIsContainer extends Container {
 		Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
  
 		try {
-			const nearLocations = (await fetch(url).then(r => r.json())).query.geosearch;
-			await this.setState({ nearLocations, loading: false });
+			const nearArticles = (await fetch(url).then(r => r.json())).query.geosearch;
+			await this.setState({ nearArticles, loading: false });
 		} catch(error) {
 			alert(error);
 			await this.setState({ error, loading: false });
@@ -36,14 +36,14 @@ export default class POIsContainer extends Container {
 	}
 	
 	clear = () => {
-		this.setState({ nearLocations: null });
+		this.setState({ nearArticles: null });
 	};
 
-	saveLocation = async (article) => {
-		if(this.state.savedLocations.some(l => l.name === article.name)){
-			alert('Article already in the reading list');
+	saveArticle = async (article) => {
+		if(this.state.savedArticles.some(a => a.title === article.title)){
+			alert('Article already in the reading list: ' + article.title);
 		} else {
-			await this.setState(state => ({savedLocations: [...state.savedLocations, article]}));
+			await this.setState(state => ({savedArticles: [...state.savedArticles, article]}));
 		}
 	}
 }

@@ -7,20 +7,11 @@ import * as Permissions from 'expo-permissions';
 
 export default class LocationItem extends Component {
 
-    reverseGeocode = async () => {
-        let geo =  await Location.reverseGeocodeAsync(this.props.location);
-        return geo[0].city;
-    }
-
     render(){
-        let city = "";
-        
-
-       // this.reverseGeocode().then(function(result) {city = result;})
         return (
 
             <View style={styles.item}>
-                <Text style={styles.title}> {city} </Text>
+                <Text style={styles.title}> {this.props.city} </Text>
             </View>
         );
     }

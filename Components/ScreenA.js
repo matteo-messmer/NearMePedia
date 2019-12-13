@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import POIsContainer from '../Unstated/POIsContainer';
+import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
 import { Text, FlatList, View, SafeAreaView, StyleSheet, Button, Image } from 'react-native';
@@ -18,18 +18,18 @@ export default class ScreenA extends Component {
       <SafeAreaView style={styles.container}>
 
         <Text style={styles.background}>Here's a list of locations around your selected position</Text>
-			<Subscribe to={[POIsContainer, PositionContainer]}>
+			<Subscribe to={[ArticlesContainer, PositionContainer]}>
 				{
 					(pois, position) => {
-						const { nearLocations, error, loading } = pois.state;
+						const { nearArticles, error, loading } = pois.state;
 
-						if (!nearLocations && !error && !loading) {
-							pois.getPOIsFromApiAsync(position.state.lat, position.state.lon);
+						if (!nearArticles && !error && !loading) {
+							pois.getArticlesFromApiAsync(position.state.lat, position.state.lon);
 						}
 							
 							
 						return (
-							<ArticlesList data={pois.state.nearLocations} />
+							<ArticlesList data={pois.state.nearArticles} />
 						);
 					}
 				}

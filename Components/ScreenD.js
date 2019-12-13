@@ -5,6 +5,8 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import { FlatList } from 'react-native-gesture-handler';
 import LocationItem from './LocationItem';
+import LocationsContainer from '../Unstated/LocationsContainer';
+import { Subscribe } from 'unstated';
 
 
 export default class ScreenD extends Component {
@@ -30,11 +32,23 @@ export default class ScreenD extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.paragraph}>{text}</Text>
-                <FlatList
-                    data={DATA}
-                    renderItem={(item) => <LocationItem location={item} />}
-                    keyExtractor={item => item.latitude.toString()}
-                />
+				
+				<Subscribe to={[LocationsContainer]}>
+					{
+						locations => {
+							if(!loaded) {
+								locations.reverseGeocodeLocations();
+							}
+							return (
+								<FlatList
+									data={locations.state.savedLocations}
+									renderItem={(item) => <LocationItem city={item.city} />}
+									keyExtractor={item => item.city}
+								/>
+							);
+						}
+					}
+				</Subscribe>
             </View>
         );
     }
