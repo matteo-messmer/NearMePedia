@@ -15,7 +15,7 @@ function Separator() {
 }
 
 
-export default class ScreenB extends Component {
+export default class ChangeLocation extends Component {
 
   render() {
 
@@ -40,7 +40,7 @@ export default class ScreenB extends Component {
 						<TouchableOpacity onPress={() => {
 																					position.geoLocate(() => {
 																						pois.clear();
-																						this.props.navigation.navigate("ScreenA");
+																						this.props.navigation.navigate("Home");
 																					});
 																				}
 																	}>
@@ -96,7 +96,7 @@ export default class ScreenB extends Component {
   }
 }
 
-ScreenB.navigationOptions = ({ navigation }) => ({
+ChangeLocation.navigationOptions = ({ navigation }) => ({
   title: "Locations",
 
 })

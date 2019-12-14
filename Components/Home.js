@@ -10,7 +10,7 @@ import { getOrientationAsync } from 'expo/build/ScreenOrientation/ScreenOrientat
 import styles from '../Style';
 
 
-export default class ScreenA extends Component {
+export default class Home extends Component {
 
 
   render() {
@@ -39,9 +39,9 @@ export default class ScreenA extends Component {
   }
 }
 
-ScreenA.navigationOptions = ({navigation}) => ({
+Home.navigationOptions = ({navigation}) => ({
   title: "Articles",
   headerRight:  <Button 
   title="Change location" 
-  onPress={() => navigation.navigate("ScreenB")}/>
+  onPress={() => navigation.navigate("ChangeLocation")}/>
 })

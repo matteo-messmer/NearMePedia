@@ -16,7 +16,7 @@ function Separator() {
 }
 
 
-export default class ScreenC extends Component {
+export default class ReadingList extends Component {
 
 
   render() {
@@ -38,7 +38,7 @@ export default class ScreenC extends Component {
   }
 }
 
-ScreenC.navigationOptions = ({ navigation }) => ({
+ReadingList.navigationOptions = ({ navigation }) => ({
   title: "Reading list",
 })
 

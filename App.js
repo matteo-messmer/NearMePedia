@@ -5,9 +5,9 @@ import { Text, ListView, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import ScreenA from './Components/ScreenA';
-import ScreenB from './Components/ScreenB';
-import ScreenC from './Components/ScreenC';
+import Home from './Components/Home';
+import ChangeLocation from './Components/ChangeLocation';
+import ReadingList from './Components/ReadingList';
 import MapScreen from './Components/MapScreen';
 import ScreenD from './Components/ScreenD';
 import Geolocation from './Components/Geolocation'
@@ -16,9 +16,9 @@ import AddLocation from './Components/AddLocation'
 
 
 const stackRoutes = {
-  ScreenA: ScreenA,
-  ScreenB: ScreenB,
-  ScreenC: ScreenC,
+  Home: Home,
+  ChangeLocation: ChangeLocation,
+  ReadingList: ReadingList,
   MapScreen: MapScreen,
   ScreenD: ScreenD,
   Geolocation: Geolocation,
@@ -26,11 +26,11 @@ const stackRoutes = {
 
 }
 const stackOptions = {
-  initialRouteName: 'ScreenA'
+  initialRouteName: 'Home'
 }
 
 const readingList = {
-  ScreenC: ScreenC,
+  ReadingList: ReadingList,
 
 }
 
@@ -40,7 +40,7 @@ const mapScreen = {
 }
 
 const StackNavigator = createStackNavigator(stackRoutes, stackOptions)
-const ReadingList = createStackNavigator(readingList)
+const ReadingListNavigator = createStackNavigator(readingList)
 const Map = createStackNavigator(mapScreen)
 
 const getIcon = (name, focused, tint) => {
@@ -50,14 +50,14 @@ const getIcon = (name, focused, tint) => {
 
 const tabRoutes = {
   Articles: StackNavigator,
-  'Reading list': ReadingList,
+  'Reading list': ReadingListNavigator,
   'Map' : Map,
 }
 StackNavigator.navigationOptions = {
   tabBarIcon: ({ focused, tint }) => getIcon("ios-list", focused, tint),
 }
 
-ReadingList.navigationOptions = {
+ReadingListNavigator.navigationOptions = {
   tabBarIcon: ({ focused, tint }) => getIcon("ios-bookmark", focused, tint),
 }
 

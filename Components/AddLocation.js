@@ -73,7 +73,7 @@ export default class AddLocation extends Component {
 
                                                         )
                                                         alert('You added the location!');
-                                                        this.props.navigation.navigate('ScreenB');
+                                                        this.props.navigation.navigate('ChangeLocation');
                                                     }}
                                                 />
                                             );
