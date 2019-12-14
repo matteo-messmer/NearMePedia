@@ -25,7 +25,8 @@ export default class ScreenD extends Component {
 								return (
 									<FlatList
 										data={locations.state.savedLocations}
-										renderItem={({item}) => <LocationItem city={item.city} />}
+										renderItem={({item}) => 
+                                        <LocationItem city={item.city} />}
 										keyExtractor={item => item.city}
 									/>
 								);

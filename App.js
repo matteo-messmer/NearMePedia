@@ -10,6 +10,7 @@ import ScreenB from './Components/ScreenB';
 import ScreenC from './Components/ScreenC';
 import MapScreen from './Components/MapScreen';
 import ScreenD from './Components/ScreenD';
+import Geolocation from './Components/Geolocation'
 
 
 
@@ -19,6 +20,7 @@ const stackRoutes = {
   ScreenC: ScreenC,
   MapScreen: MapScreen,
   ScreenD: ScreenD,
+  Geolocation: Geolocation,
 
 }
 const stackOptions = {

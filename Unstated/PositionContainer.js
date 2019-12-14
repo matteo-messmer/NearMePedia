@@ -5,7 +5,8 @@ export default class PositionContainer extends Container {
 	
     state = {
 		lat:0, 
-		lon:0
+		lon:0,
+		location : '',
     };
 
 	geoLocate = async (callback) => {	
@@ -23,6 +24,31 @@ export default class PositionContainer extends Container {
 		await this.setState({	lat:coords.lat, lon:coords.lon});
 		//console.log(coords);
 	}
+
+	geoLocation = async (callback) => {	
+		await navigator.geolocation.getCurrentPosition(
+			position => {
+				this.setState({ lat: JSON.stringify(this.state.location[0].latitude), lon: JSON.stringify(this.state.location[0].longitude)});
+				callback();
+			},
+			error => Alert.alert(error.message),
+			{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+		);
+	}
+
+	geolocation = async (callback) => {
+		let address = this.props.city;
+        let position = await Location.geocodeAsync(address);
+
+		latitude = JSON.stringify(this.state.position[0].latitude);
+		longitude = JSON.stringify(this.state.position[0].longitude);
+		callback();
+
+       
+		this.setState({ lat: latitude, lon: longitude });
+		alert(position);
+    };
+	
 	
 	distance = (lat, lon) => {
 		if ((lat == this.state.lat) && (lon== this.state.lon)) {
