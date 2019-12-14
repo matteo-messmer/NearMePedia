@@ -23,7 +23,7 @@ export default class ScreenC extends Component {
     return (
 		<SafeAreaView style={styles.container}>
 
-			<Text style={styles.background}>Here's a list of locations around your selected position</Text>
+			<Text style={styles.background}>Here's a list of locations you saved</Text>
 			<Subscribe to={[ArticlesContainer]}>
 				{
 					(pois) => {

@@ -42,27 +42,14 @@ export default class LocationItem extends Component {
         let latitude = JSON.stringify(this.state.location[0].latitude);
         let longitude = JSON.stringify(this.state.location[0].longitude);
         this.setState({ location, lat: latitude, lon: longitude });
+        
 
     };
-
-
-
-    componentWillMount() {
-        if (Platform.OS === 'android' && !Constants.isDevice) {
-            this.setState({
-                errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
-            });
-        } else {
-            this._getLocationAsync();
-        }
-    }
-
-
-
 
     render() {
 
         let city = this.props.city;
+        this._getLocationAsync();
 
         let latitude = '';
         let longitude = '';
@@ -74,10 +61,6 @@ export default class LocationItem extends Component {
 
         }
 
-
-
-
-
         //alert(this.props.city);
         return (
 
@@ -87,13 +70,13 @@ export default class LocationItem extends Component {
                     (position, pois) => {
                         return (
 
-                            <TouchableOpacity style={styles.item} onPress={() => {
+                            <TouchableOpacity style={styles.item} 
+                            /*onPress={() => {
                                 position._getLocationAsync(() => {
                                     pois.clear();
                                     this.props.navigation.navigate("ScreenA");
-                                });
-                            }
-                            }>
+                                });}}*/
+                                >
                                 <View >
                                     <Text style={styles.itemHeader}>{city}</Text>
                                     <Text>Latitude: {this.latitude}</Text>
