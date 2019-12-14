@@ -3,6 +3,7 @@ import { Card, Button } from 'react-native-elements';
 import { Linking, Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
+import Compass from './Compass';
 import styles from '../Style';
 
 export default class Article extends Component {
@@ -19,6 +20,7 @@ export default class Article extends Component {
 
 				image={{ uri: 'https://i.etsystatic.com/10589613/r/il/2b6a3a/1359294046/il_570xN.1359294046_3q07.jpg' }}>
 				<Text>Distance: {this.props.distance.toFixed(1)} Km</Text>
+				<Compass />
 				<View style = {styles.containerb}>
 					<TouchableOpacity onPress={() => this.loadInBrowser(this.props.article.pageid)}>
 						<View style={styles.button}>

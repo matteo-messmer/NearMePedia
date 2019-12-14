@@ -8,7 +8,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ScreenA from './Components/ScreenA';
 import ScreenB from './Components/ScreenB';
 import ScreenC from './Components/ScreenC';
-import AddLocation from './Components/AddLocation';
 import MapScreen from './Components/MapScreen';
 import ScreenD from './Components/ScreenD';
 
@@ -18,7 +17,6 @@ const stackRoutes = {
   ScreenA: ScreenA,
   ScreenB: ScreenB,
   ScreenC: ScreenC,
-  AddLocation: AddLocation,
   MapScreen: MapScreen,
   ScreenD: ScreenD,
 
