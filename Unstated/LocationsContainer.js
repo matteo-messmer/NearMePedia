@@ -64,6 +64,22 @@ export default class LocationsContainer extends Container {
 		this.setState({loaded: true, savedLocations:locations});
 	};
 
+	geocodeLocations = async () => {
+		let locations = this.state.savedLocations;
+		for(let i = 0; i < locations.length; i++) {
+			
+				let geo = await Location.geocodeAsync(city);
+
+				locations[i].city = geo[0].city;
+				//alert(savedLocations[i].city);
+				
+			
+		}
+		this.setState({loaded: true, savedLocations:locations});
+	};
+
+
+
 	
 	clear = () => {
 		this.setState({ nearArticles: null });

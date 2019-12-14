@@ -5,8 +5,6 @@ import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
 import LocationsContainer from '../Unstated/LocationsContainer';
-
-
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
@@ -50,6 +48,7 @@ export default class LocationItem extends Component {
 
         let city = this.props.city;
         this._getLocationAsync();
+        let i = 0;
 
         let latitude = '';
         let longitude = '';
@@ -64,13 +63,15 @@ export default class LocationItem extends Component {
         //alert(this.props.city);
         return (
 
-
-            <Subscribe to={[PositionContainer, ArticlesContainer]}>
-                {
-                    (position, pois) => {
-                        return (
-
-                            <TouchableOpacity style={styles.item} 
+            <Subscribe to={[LocationsContainer]}>
+                                {
+                                    locations => {
+                                        if (!locations.state.loaded) {
+                                            locations.geocodeLocations();
+                                            return null;
+                                        } else {
+                                            return (
+                                                <TouchableOpacity style={styles.item} 
                             /*onPress={() => {
                                 position._getLocationAsync(() => {
                                     pois.clear();
@@ -79,15 +80,19 @@ export default class LocationItem extends Component {
                                 >
                                 <View >
                                     <Text style={styles.itemHeader}>{city}</Text>
-                                    <Text>Latitude: {this.latitude}</Text>
-                                    <Text>Longitude: {this.longitude} </Text>
+                                        <Text>Latitude:  {locations.state.savedLocations[i].coords.latitude}</Text>
+                                        <Text>Longitude:  {locations.state.savedLocations[i].coords.longitude}</Text>
 
                                 </View>
                             </TouchableOpacity>
-                        );
-                    }
-                }
-            </Subscribe>
+                                            );
+                                        }
+                                    }
+                                }
+                            </Subscribe>
+
+
+            
 
         );
     }

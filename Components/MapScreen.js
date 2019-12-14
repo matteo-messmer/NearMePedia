@@ -47,6 +47,6 @@ export default class MapScreen extends React.Component {
 	}
 }
 
-Map.navigationOptions = ({ navigation }) => ({
+MapScreen.navigationOptions = ({ navigation }) => ({
 	title: "Maps",
 })
