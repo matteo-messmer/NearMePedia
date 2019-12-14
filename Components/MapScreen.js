@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
+import styles from '../Style';
 
 export default class MapScreen extends React.Component {
 	render() {
 		return (
 			<Subscribe to={[ArticlesContainer, PositionContainer]}>
 				{
-					(pois, position) => {
-						const markers = pois.state.savedArticles.map((poi) => <Marker
-							coordinate={{ latitude: poi.lat, longitude: poi.lon }}
-							title={poi.title}
-							key={poi.title}
-						/>);
+					(articles, position) => {
+						const markers = articles.state.savedArticles.map((article) => <Marker
+							coordinate={{ latitude: article.lat, longitude: article.lon }}
+							key={article.title}>
+							<MapView.Callout onPress={() => articles.loadArticleInBrowser(article.pageid)}>
+        <View>
+            <Text>{article.title}</Text>
+			
+        </View>
+    </MapView.Callout>
+							</Marker>);
 
 						return (
 							<MapView

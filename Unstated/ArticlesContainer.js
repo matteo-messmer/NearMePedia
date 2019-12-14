@@ -1,4 +1,5 @@
 import { Container } from "unstated";
+import { Linking } from 'react-native';
 
 export default class ArticlesContainer extends Container {
 	
@@ -8,7 +9,11 @@ export default class ArticlesContainer extends Container {
 		error: null,
 		loading: false,
 	};
-  
+	
+  	loadArticleInBrowser = (id) => {
+		Linking.openURL('http://en.wikipedia.org/?curid=' + id).catch(err => console.error("Couldn't load page", err));
+	};
+	
 	getArticlesFromApiAsync = async (lat, lon) => {
 		await this.setState({ loading: true });
 		
