@@ -30,7 +30,7 @@ export default class Geolocation extends Component {
             });
         }
 
-        let address = "Trento";
+        let address = "Roma";
 
         let location = await Location.geocodeAsync(address)
         this.setState({ location });
@@ -55,6 +55,7 @@ export default class Geolocation extends Component {
 
         return (
             <View style={styles.container}>
+                
                 <Text style={styles.body}>
                     Insert the location you want to add</Text>
 
@@ -78,6 +79,8 @@ export default class Geolocation extends Component {
                             )
                             alert(this.value);
                             alert('You added the location!');
+                            alert(this.props.city);
+
                         }}
                     />
                 </View>

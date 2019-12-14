@@ -12,9 +12,72 @@ import * as Permissions from 'expo-permissions';
 
 export default class LocationItem extends Component {
 
+    state = {
+        location: null,
+        errorMessage: null,
+        address: '',
+    };
+
+    geolocation = async (callback) => {
+        let address = this.props.city;
+        let position = await Location.geocodeAsync(address);
+        alert(position);
+
+        latitude = JSON.stringify(this.state.position[0].latitude);
+        longitude = JSON.stringify(this.state.position[0].longitude);
+        callback();
+
+
+        this.setState({ lat: latitude, lon: longitude });
+
+    };
+
+    _getLocationAsync = async () => {
+
+
+        let address = this.props.city;
+
+        let location = await Location.geocodeAsync(address)
+
+        let latitude = JSON.stringify(this.state.location[0].latitude);
+        let longitude = JSON.stringify(this.state.location[0].longitude);
+        this.setState({ location, lat: latitude, lon: longitude });
+
+    };
+
+
+
+    componentWillMount() {
+        if (Platform.OS === 'android' && !Constants.isDevice) {
+            this.setState({
+                errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+            });
+        } else {
+            this._getLocationAsync();
+        }
+    }
+
+
+
+
     render() {
 
         let city = this.props.city;
+
+        let latitude = '';
+        let longitude = '';
+        if (this.state.errorMessage) {
+            text = this.state.errorMessage;
+        } else if (this.state.location) {
+            latitude = JSON.stringify(this.state.location[0].latitude);
+            longitude = JSON.stringify(this.state.location[0].longitude);
+
+        }
+
+
+
+
+
         //alert(this.props.city);
         return (
 
@@ -23,9 +86,9 @@ export default class LocationItem extends Component {
                 {
                     (position, pois) => {
                         return (
-                            
+
                             <TouchableOpacity style={styles.item} onPress={() => {
-                                position.geolocation(() => {
+                                position._getLocationAsync(() => {
                                     pois.clear();
                                     this.props.navigation.navigate("ScreenA");
                                 });
@@ -33,6 +96,9 @@ export default class LocationItem extends Component {
                             }>
                                 <View >
                                     <Text style={styles.itemHeader}>{city}</Text>
+                                    <Text>Latitude: {this.latitude}</Text>
+                                    <Text>Longitude: {this.longitude} </Text>
+
                                 </View>
                             </TouchableOpacity>
                         );

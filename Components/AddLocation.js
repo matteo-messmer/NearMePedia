@@ -6,7 +6,7 @@ import { CoordinatesContainer } from 'unstated';
 import { Text, ListView, View, StyleSheet, Button, TextInput } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import Constants from 'expo-constants';
-import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import { ScrollView, FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import Geocoder from 'react-native-geocoding';
 import LocationsContainer from '../Unstated/LocationsContainer';
 import LocationItem from './LocationItem';
@@ -64,8 +64,11 @@ export default class AddLocation extends Component {
                                                     onPress={() => {
 
                                                         locations.state.savedLocations.push({
+
+                                                            
                                                             city: this.state.addLocation,
                                                             //coords: this.state.addLocation
+                                                            
                                                         }
 
                                                         )
