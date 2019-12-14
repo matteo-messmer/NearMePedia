@@ -6,6 +6,8 @@ import { Text, ListView, View, StyleSheet, Button, TextInput, ScrollView } from 
 import SafeAreaView from 'react-native-safe-area-view';
 import Constants from 'expo-constants';
 import { TouchableOpacity, FlatList } from 'react-native-gesture-handler';
+import LocationItem from './LocationItem';
+import LocationsContainer from '../Unstated/LocationsContainer';
 import styles from '../Style';
 
 function Separator() {
@@ -59,14 +61,6 @@ export default class ScreenB extends Component {
           </View>
 
 
-          <Separator />
-
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("ScreenD")}>
-              <View style={styles.button}>
-                <Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Reverse</Text>
-              </View>
-            </TouchableOpacity>
-
 
           <View>
 
@@ -75,9 +69,24 @@ export default class ScreenB extends Component {
             <Separator />
           </View>
 
-          <FlatList>
-
-          </FlatList>
+				<Subscribe to={[LocationsContainer]}>
+					{
+						locations => {
+							if(!locations.state.loaded) {
+								locations.reverseGeocodeLocations();
+								return null;
+							} else {
+								return (
+									<FlatList
+										data={locations.state.savedLocations}
+										renderItem={({item}) => <LocationItem city={item.city} />}
+										keyExtractor={item => item.city}
+									/>
+								);
+							}
+						}
+					}
+				</Subscribe>
 
           
         </ScrollView>

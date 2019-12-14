@@ -8,6 +8,7 @@ import * as Permissions from 'expo-permissions';
 export default class LocationItem extends Component {
 
     render(){
+		//alert(this.props.city);
         return (
 
             <View style={styles.item}>

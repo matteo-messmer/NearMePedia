@@ -1,12 +1,42 @@
 import { Container } from "unstated";
+import * as Location from 'expo-location';
 
 export default class LocationsContainer extends Container {
 	
 	state = {
 		savedLocations: [
 			{
-				latitude: 46.5024218,
-				longitude: 11.3591007
+				coords: {
+					latitude: 46.5024218,
+					longitude: 11.3591007
+				},
+				city: ""
+			},
+			{
+				coords: {
+					latitude: 40.6976637,
+					longitude: -74.1197635
+				},
+				city: ""
+			},
+						{
+				coords: {
+					latitude: 48.8589507,
+					longitude: 2.2770205
+				},
+				city: ""
+			},			{
+				coords: {
+					latitude: 52.5069704,
+					longitude: 13.2846505
+				},
+				city: ""
+			},			{
+				coords: {
+					latitude: -33.8478796,
+					longitude: 150.7918926
+				},
+				city: ""
 			}
 		],
 		loaded: false,
@@ -22,11 +52,16 @@ export default class LocationsContainer extends Container {
 				]
 			});*/
 	reverseGeocodeLocations = async () => {
-		for(let i = 0; i < this.state.savedLocations.length; i++) {
-			let geo = await Location.reverseGeocodeAsync(this.props.location);
-	
+		let locations = this.state.savedLocations;
+		for(let i = 0; i < locations.length; i++) {
+			
+				let geo = await Location.reverseGeocodeAsync(locations[i].coords);
+
+				locations[i].city = geo[0].city;
+				//alert(savedLocations[i].city);
+			
 		}
-		this.setState({loaded: true});
+		this.setState({loaded: true, savedLocations:locations});
 	}
 	
 	clear = () => {

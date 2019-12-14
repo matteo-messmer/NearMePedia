@@ -12,40 +12,24 @@ import { Subscribe } from 'unstated';
 export default class ScreenD extends Component {
 
     render() {
-        const DATA = [
-            {
-                latitude: 46.2595667,
-                longitude: 11.0636139,
-            },
-            {
-                latitude: 46.2595667,
-                longitude: 11.0636139,
-            },
-            {
-                latitude: 46.2595667,
-                longitude: 11.0636139,
-            }
-        ];
-
-        let text = 'Waiting..';
 
         return (
             <View style={styles.container}>
-                <Text style={styles.paragraph}>{text}</Text>
-				
 				<Subscribe to={[LocationsContainer]}>
 					{
 						locations => {
-							if(!loaded) {
+							if(!locations.state.loaded) {
 								locations.reverseGeocodeLocations();
+								return null;
+							} else {
+								return (
+									<FlatList
+										data={locations.state.savedLocations}
+										renderItem={({item}) => <LocationItem city={item.city} />}
+										keyExtractor={item => item.city}
+									/>
+								);
 							}
-							return (
-								<FlatList
-									data={locations.state.savedLocations}
-									renderItem={(item) => <LocationItem city={item.city} />}
-									keyExtractor={item => item.city}
-								/>
-							);
 						}
 					}
 				</Subscribe>
