@@ -1,19 +1,45 @@
 import React, { Component } from 'react';
-import { Platform, Text, View, StyleSheet } from 'react-native';
+import { Platform, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
+import ArticlesContainer from '../Unstated/ArticlesContainer';
+import PositionContainer from '../Unstated/PositionContainer';
+import { Subscribe } from 'unstated';
+import LocationsContainer from '../Unstated/LocationsContainer';
+
 
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
 export default class LocationItem extends Component {
 
-    render(){
-		//alert(this.props.city);
+    render() {
+
+        let city = this.props.city;
+        //alert(this.props.city);
         return (
 
-            <View style={styles.item}>
-                <Text style={styles.title}> {this.props.city} </Text>
-            </View>
+
+            <Subscribe to={[PositionContainer, ArticlesContainer]}>
+                {
+                    (position, pois) => {
+                        return (
+                            
+                            <TouchableOpacity style={styles.item} onPress={() => {
+                                position.geolocation(() => {
+                                    pois.clear();
+                                    this.props.navigation.navigate("ScreenA");
+                                });
+                            }
+                            }>
+                                <View >
+                                    <Text style={styles.itemHeader}>{city}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        );
+                    }
+                }
+            </Subscribe>
+
         );
     }
 
@@ -34,12 +60,18 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
     },
-
     item: {
-        backgroundColor: '#f9c2ff',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
+        alignSelf: 'stretch',
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 8,
+        margin: 20,
+
+    },
+    itemHeader: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: 'black'
     },
     title: {
         fontSize: 32,

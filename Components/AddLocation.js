@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
+import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
 import { CoordinatesContainer } from 'unstated';
 import { Text, ListView, View, StyleSheet, Button, TextInput } from 'react-native';
@@ -7,22 +8,18 @@ import SafeAreaView from 'react-native-safe-area-view';
 import Constants from 'expo-constants';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import Geocoder from 'react-native-geocoding';
+import LocationsContainer from '../Unstated/LocationsContainer';
+import LocationItem from './LocationItem';
 
 
 function Separator() {
     return <View style={styles.separator} />;
 }
 
-
 export default class AddLocation extends Component {
 
-    state = {
-        location: '',
-    }
-
-    getData() {
-
-        Geocoder.init("AIzaSyDOZf_oV5F9eMvMCquOR8m9jZQAmDm__5s");
+    handleChange = (data) => {
+        this.setState(data);
     }
 
     render() {
@@ -47,17 +44,40 @@ export default class AddLocation extends Component {
 
                         <TextInput
                             style={styles.input}
-                            value={this.state.location}
+                            onChangeText={value => this.handleChange({ addLocation: value })}
 
                         />
 
                         <View style={styles.button}>
 
-                            <Button
-                                title="Add location"
-                                color="black"
-                                onPress={() => this.getData}
-                            />
+                            <Subscribe to={[LocationsContainer]}>
+                                {
+                                    locations => {
+                                        if (!locations.state.loaded) {
+                                            locations.reverseGeocodeLocations();
+                                            return null;
+                                        } else {
+                                            return (
+                                                <Button
+                                                    title="Add location"
+                                                    color="black"
+                                                    onPress={() => {
+
+                                                        locations.state.savedLocations.push({
+                                                            city: this.state.addLocation,
+                                                            //coords: this.state.addLocation
+                                                        }
+
+                                                        )
+                                                        alert('You added the location!');
+                                                        this.props.navigation.navigate('ScreenB');
+                                                    }}
+                                                />
+                                            );
+                                        }
+                                    }
+                                }
+                            </Subscribe>
                         </View>
                         <Separator />
                     </View>
@@ -67,41 +87,41 @@ export default class AddLocation extends Component {
         );
     }
 }
- 
+
 // Initialize the module (needs to be done only once)
- // use a valid API key
+// use a valid API key
 // With more options
 // Geocoder.init("xxxxxxxxxxxxxxxxxxxxxxxxx", {language : "en"}); // set the language
- 
+
 Geocoder.from("Colosseum")
-        .then(json => {
-            var location = json.results[0].geometry.location;
-            console.log(location);
-        })
-        .catch(error => console.warn(error));
- 
+    .then(json => {
+        var location = json.results[0].geometry.location;
+        console.log(location);
+    })
+    .catch(error => console.warn(error));
+
 Geocoder.from(41.89, 12.49)
-        .then(json => {
-        		var addressComponent = json.results[0].address_components[0];
-            console.log(addressComponent);
-        })
-        .catch(error => console.warn(error));
- 
+    .then(json => {
+        var addressComponent = json.results[0].address_components[0];
+        console.log(addressComponent);
+    })
+    .catch(error => console.warn(error));
+
 // Works as well :
 // ------------
- 
+
 // location object
 Geocoder.from({
-    latitude : 41.89,
-    longitude : 12.49
+    latitude: 41.89,
+    longitude: 12.49
 });
- 
+
 // latlng object
 Geocoder.from({
-    lat : 41.89,
-    lng : 12.49
+    lat: 41.89,
+    lng: 12.49
 });
- 
+
 // array
 Geocoder.from([41.89, 12.49]);
 

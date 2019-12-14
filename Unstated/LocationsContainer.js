@@ -14,8 +14,8 @@ export default class LocationsContainer extends Container {
 			},
 			{
 				coords: {
-					latitude: 40.6976637,
-					longitude: -74.1197635
+					latitude: 40.7128,
+					longitude: -74.0059
 				},
 				city: ""
 			},
@@ -33,8 +33,8 @@ export default class LocationsContainer extends Container {
 				city: ""
 			},			{
 				coords: {
-					latitude: -33.8478796,
-					longitude: 150.7918926
+					latitude: -33.8678500,
+					longitude: 151.2073200
 				},
 				city: ""
 			}
@@ -62,7 +62,8 @@ export default class LocationsContainer extends Container {
 			
 		}
 		this.setState({loaded: true, savedLocations:locations});
-	}
+	};
+
 	
 	clear = () => {
 		this.setState({ nearArticles: null });
