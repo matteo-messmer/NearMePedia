@@ -25,7 +25,7 @@ export default class PositionContainer extends Container {
 		//console.log(coords);
 	}
 
-	geoLocation = async (callback) => {	
+/*	geoLocation = async (callback) => {	
 		await Location.geocodeAsync( position =>{
 
 			this.setState({ 
@@ -51,7 +51,7 @@ export default class PositionContainer extends Container {
 		this.setState({ lat: latitude, lon: longitude });
 		
     };
-	
+	*/
 	
 	distance = (lat, lon) => {
 		if ((lat == this.state.lat) && (lon== this.state.lon)) {

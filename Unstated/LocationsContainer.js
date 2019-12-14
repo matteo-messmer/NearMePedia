@@ -79,8 +79,6 @@ export default class LocationsContainer extends Container {
 	};
 
 
-
-	
 	clear = () => {
 		this.setState({ nearArticles: null });
 	};
