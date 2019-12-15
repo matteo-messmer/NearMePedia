@@ -30,24 +30,10 @@ export default class LocationItem extends Component {
 
     };
 
-    _getLocationAsync = async () => {
-
-
-        let address = this.props.city;
-
-        let location = await Location.geocodeAsync(address)
-
-        let latitude = JSON.stringify(this.state.location[0].latitude);
-        let longitude = JSON.stringify(this.state.location[0].longitude);
-        this.setState({ location, lat: latitude, lon: longitude });
-        
-
-    };
-
     render() {
 
         let city = this.props.city;
-        this._getLocationAsync();
+     
         let i = 0;
 
         let latitude = '';
