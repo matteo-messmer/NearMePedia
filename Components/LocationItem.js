@@ -12,25 +12,25 @@ export default class LocationItem extends Component {
 
     render() {
         return (
-			<Subscribe to={[PositionContainer, ArticlesContainer]}>
-				{
-					(position, articles) => {
-						return (					
-							<TouchableOpacity style={styles.item} onPress={() => {
-																													position.setCoordinates(this.props.location.coords);
-																													articles.clear();
-																													this.props.navigation.navigate("Home");
-																												}
-																									}>
-								<View>
-									<Text style={styles.itemHeader}>{this.props.location.city}</Text>
-								</View>
-							</TouchableOpacity>
-						);
-					}
-				}
-			</Subscribe>
-		);
-	}
+            <Subscribe to={[PositionContainer, ArticlesContainer]}>
+                {
+                    (position, articles) => {
+                        return (
+                            <TouchableOpacity style={styles.item} onPress={() => {
+                                position.setCoordinates(this.props.location.coords);
+                                articles.clear();
+                                this.props.navigation.navigate("Home");
+                            }
+                            }>
+                                <View>
+                                    <Text style={styles.itemHeader}>{this.props.location.city}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        );
+                    }
+                }
+            </Subscribe>
+        );
+    }
 }
 

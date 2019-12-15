@@ -1,12 +1,33 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'react-native-elements';
-import { Linking, Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Linking, Text, StyleSheet, View, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
 import Compass from './Compass';
 import styles from '../Style';
+import { Magnetometer } from 'expo-sensors';
 
 export default class Article extends Component {
+
+	state = {
+
+		isReady: false,
+		v: null,
+
+	}
+
+	_setupMagnetometerAsync = async () =>  {
+
+		Magnetometer.addListener((v) =>{
+			this.setState({v});
+		});
+
+	}
+	componentDidMount() {
+		this._setupMagnetometerAsync();
+	}
+
+
 	render() {
 		return (
 			<Subscribe to={[ArticlesContainer]}>
@@ -43,6 +64,24 @@ export default class Article extends Component {
 										</View>
 									</TouchableOpacity>
 									{saveArticle}
+								</View>
+								<View>
+						
+									<ImageBackground source = {require("./CompassFace.png")} style = {{
+										height: 120,
+										width: 120,
+										alignItems: 'center',
+										justifyContent: 'center'
+									}}>
+
+										<Image source = {require("./CompassNeedle.png")} 
+										style = {{
+											height: 100,
+											width: 100,
+											opacity: 0.65,
+										}}></Image>
+									</ImageBackground>
+									<Text>{JSON.stringify(this.state.v)}</Text>
 								</View>
 							</Card>
 						);
