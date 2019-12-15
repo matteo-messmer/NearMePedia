@@ -4,6 +4,9 @@ import * as Location from 'expo-location';
 export default class LocationsContainer extends Container {
 	
 	state = {
+		newLocation: {
+			city: ""
+		},
 		savedLocations: [
 			{
 				coords: {
@@ -19,19 +22,21 @@ export default class LocationsContainer extends Container {
 				},
 				city: ""
 			},
-						{
+			{
 				coords: {
 					latitude: 48.8589507,
 					longitude: 2.2770205
 				},
 				city: ""
-			},			{
+			},			
+			{
 				coords: {
 					latitude: 52.5069704,
 					longitude: 13.2846505
 				},
 				city: ""
-			},			{
+			},	
+			{
 				coords: {
 					latitude: -33.8678500,
 					longitude: 151.2073200
@@ -41,7 +46,7 @@ export default class LocationsContainer extends Container {
 		],
 		loaded: false,
 	};
-  
+	
 	// coords to city name
 	reverseGeocodeLocations = async () => {
 		let locations = this.state.savedLocations;
@@ -52,4 +57,23 @@ export default class LocationsContainer extends Container {
 		}
 		this.setState({loaded: true, savedLocations:locations});
 	};
+	
+	setNewLocation = (city) => {
+		this.setState({newLocation:{city:city}});
+	}
+	
+	saveLocation = async () => {
+        let location = await Location.geocodeAsync(this.state.newLocation.city);
+		
+		let savedLocations = this.state.savedLocations;
+		savedLocations.push({
+			city: this.state.newLocation.city, 
+			coords: {
+				latitude: location[0].latitude,
+				longitude: location[0].longitude
+			}
+		});
+		
+		this.setState({ savedLocations });
+	}
 }

@@ -23,15 +23,6 @@ export default class ChangeLocation extends Component {
 
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <View >
-
-            <Text style={styles.title}>
-              Change the location to see other articles</Text>
-            <Separator />
-          </View>
-
-
-
           <View style={styles.containerb}>
 			<Subscribe to={[PositionContainer, ArticlesContainer]}>
 				{
@@ -45,7 +36,7 @@ export default class ChangeLocation extends Component {
 																				}
 																	}>
 							<View style={styles.button}>
-								<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>GPS</Text>
+								<Text style={{ color: 'black', textAlign: 'center', fontSize: 17 }}>Current Position</Text>
 							</View>
 						</TouchableOpacity>
 						);
@@ -55,43 +46,36 @@ export default class ChangeLocation extends Component {
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate("AddLocation")}>
               <View style={styles.button}>
-                <Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Add location</Text>
+                <Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Add Location</Text>
               </View>
             </TouchableOpacity>
           </View>
 
-
-
           <View>
-
-            <Text style={styles.title}>
-              Here's a list of locations</Text>
+            <Text style={styles.title}>Saved Locations</Text>
             <Separator />
           </View>
 
-				<Subscribe to={[LocationsContainer]}>
-					{
-						locations => {
-							if(!locations.state.loaded) {
-								locations.reverseGeocodeLocations();
-								return null;
-							} else {
-								return (
-									<FlatList
-										data={locations.state.savedLocations}
-										renderItem={({item}) => <LocationItem location={item} navigation={this.props.navigation}/>}
-										keyExtractor={item => item.city}
-									/>
-								);
-							}
+			<Subscribe to={[LocationsContainer]}>
+				{
+					locations => {
+						if(!locations.state.loaded) {
+							locations.reverseGeocodeLocations();
+							return null;
+						} else {
+							return (
+								<FlatList
+									data={locations.state.savedLocations}
+									renderItem={({item}) => <LocationItem location={item} navigation={this.props.navigation}/>}
+									keyExtractor={item => item.city}
+								/>
+							);
 						}
 					}
-				</Subscribe>
-
-          
+				}
+			</Subscribe>
         </ScrollView>
       </SafeAreaView >
-
     );
   }
 }

@@ -33,10 +33,7 @@ export default class Article extends Component {
 						
 						
 						return (
-							<Card
-								title={this.props.article.title}
-
-								image={{ uri: 'https://i.etsystatic.com/10589613/r/il/2b6a3a/1359294046/il_570xN.1359294046_3q07.jpg' }}>
+							<Card title={this.props.article.title}>
 								<Text>Distance: {this.props.distance.toFixed(1)} Km</Text>
 								
 								<View style = {styles.containerb}>

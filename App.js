@@ -9,7 +9,6 @@ import Home from './Components/Home';
 import ChangeLocation from './Components/ChangeLocation';
 import ReadingList from './Components/ReadingList';
 import MapScreen from './Components/MapScreen';
-import Geolocation from './Components/Geolocation'
 import AddLocation from './Components/AddLocation'
 
 const stackRoutes = {
@@ -17,7 +16,6 @@ const stackRoutes = {
   ChangeLocation: ChangeLocation,
   ReadingList: ReadingList,
   MapScreen: MapScreen,
-  Geolocation: Geolocation,
   AddLocation: AddLocation
 }
 
