@@ -29,6 +29,23 @@ export default class Article extends Component {
 
 
 	render() {
+
+		let theta = "0rad";
+		if (this.state.v) {
+			let {x,y,z} = this.state.v;
+			theta = Math.atan(-x/y);
+			if (-x > 0 && y > 0)
+			{
+
+			}
+			else if (y > 0){
+				theta += Math.PI;
+
+			}
+			else {
+				theta += Math.PI * 2;
+			}
+		}
 		return (
 			<Subscribe to={[ArticlesContainer]}>
 				{
@@ -79,6 +96,7 @@ export default class Article extends Component {
 											height: 100,
 											width: 100,
 											opacity: 0.65,
+											transform: [{rotate: theta+'rad'}]
 										}}></Image>
 									</ImageBackground>
 									<Text>{JSON.stringify(this.state.v)}</Text>
