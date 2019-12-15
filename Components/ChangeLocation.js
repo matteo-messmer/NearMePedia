@@ -79,7 +79,7 @@ export default class ChangeLocation extends Component {
 								return (
 									<FlatList
 										data={locations.state.savedLocations}
-										renderItem={({item}) => <LocationItem location={item}/>}
+										renderItem={({item}) => <LocationItem location={item} navigation={this.props.navigation}/>}
 										keyExtractor={item => item.city}
 									/>
 								);

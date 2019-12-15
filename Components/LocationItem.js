@@ -19,7 +19,7 @@ export default class LocationItem extends Component {
 							<TouchableOpacity style={styles.item} onPress={() => {
 																													position.setCoordinates(this.props.location.coords);
 																													articles.clear();
-																													navigation.navigate("Home");
+																													this.props.navigation.navigate("Home");
 																												}
 																									}>
 								<View>
