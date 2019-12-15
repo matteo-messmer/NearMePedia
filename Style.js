@@ -85,6 +85,19 @@ const styles = StyleSheet.create({
         height: 50,
         width: 100
     },
+	item: {
+        alignSelf: 'stretch',
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 8,
+        margin: 20,
+    },
+	itemHeader: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: 'black'
+    },
+
 
 });
 

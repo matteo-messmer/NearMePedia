@@ -35,11 +35,11 @@ export default class ChangeLocation extends Component {
           <View style={styles.containerb}>
 			<Subscribe to={[PositionContainer, ArticlesContainer]}>
 				{
-					(position, pois) => {
+					(position, articles) => {
 						return(
 						<TouchableOpacity onPress={() => {
 																					position.geoLocate(() => {
-																						pois.clear();
+																						articles.clear();
 																						this.props.navigation.navigate("Home");
 																					});
 																				}

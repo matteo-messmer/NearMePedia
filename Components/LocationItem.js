@@ -6,6 +6,7 @@ import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import styles from '../Style';
 
 export default class LocationItem extends Component {
 
@@ -17,7 +18,6 @@ export default class LocationItem extends Component {
 						return (					
 							<TouchableOpacity style={styles.item} onPress={() => {
 																													position.setCoordinates(this.props.location.coords);
-																													alert(this.props.location.coords.latitude);
 																													articles.clear();
 																													this.props.navigation.navigate("Home");
 																												}
@@ -33,35 +33,3 @@ export default class LocationItem extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: Constants.statusBarHeight,
-        backgroundColor: '#ecf0f1',
-    },
-    paragraph: {
-        margin: 24,
-        fontSize: 18,
-        textAlign: 'center',
-    },
-    item: {
-        alignSelf: 'stretch',
-        borderWidth: 1,
-        padding: 10,
-        borderRadius: 8,
-        margin: 20,
-
-    },
-    itemHeader: {
-        textAlign: 'center',
-        fontSize: 20,
-        color: 'black'
-    },
-    title: {
-        fontSize: 32,
-    },
-
-});

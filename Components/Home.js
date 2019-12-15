@@ -20,16 +20,15 @@ export default class Home extends Component {
         <Text style={styles.background}>Here's a list of locations around your selected position</Text>
 			<Subscribe to={[ArticlesContainer, PositionContainer]}>
 				{
-					(pois, position) => {
-						const { nearArticles, error, loading } = pois.state;
+					(articles, position) => {
+						const { nearArticles, error, loading } = articles.state;
 
 						if (!nearArticles && !error && !loading) {
-							pois.getArticlesFromApiAsync(position.state.latitude, position.state.longitude);
+							articles.getArticlesFromApiAsync(position.state.latitude, position.state.longitude);
 						}
-							
-							
+						
 						return (
-							<ArticlesList data={pois.state.nearArticles} />
+							<ArticlesList data={articles.state.nearArticles} />
 						);
 					}
 				}

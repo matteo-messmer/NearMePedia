@@ -9,33 +9,27 @@ import Home from './Components/Home';
 import ChangeLocation from './Components/ChangeLocation';
 import ReadingList from './Components/ReadingList';
 import MapScreen from './Components/MapScreen';
-import ScreenD from './Components/ScreenD';
 import Geolocation from './Components/Geolocation'
 import AddLocation from './Components/AddLocation'
-
-
 
 const stackRoutes = {
   Home: Home,
   ChangeLocation: ChangeLocation,
   ReadingList: ReadingList,
   MapScreen: MapScreen,
-  ScreenD: ScreenD,
   Geolocation: Geolocation,
   AddLocation: AddLocation
-
 }
+
 const stackOptions = {
   initialRouteName: 'Home'
 }
 
 const readingList = {
   ReadingList: ReadingList,
-
 }
 
 const mapScreen = {
-
   MapScreen: MapScreen,
 }
 
