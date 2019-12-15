@@ -51,7 +51,7 @@ export default class ChangeLocation extends Component {
 					</View>
 
 					<View>
-						<Text style={styles.title}>Saved Locations</Text>
+						<Text style={styles.title}>Other locations you might like</Text>
 						<Separator />
 					</View>
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, } from 'react-native-elements';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
 import Compass from './Compass';
@@ -15,6 +15,7 @@ export default class Article extends Component {
 				{
 					articles => {
 						let saveArticle;
+						let deleteArticle;
 						if (!articles.state.savedArticles.some(l => l.title === this.props.article.title)) {
 							saveArticle = (
 								<TouchableOpacity onPress={() => articles.saveArticle(this.props.article)}>
@@ -25,12 +26,38 @@ export default class Article extends Component {
 
 								</TouchableOpacity>
 							);
+
+
 						} else {
 							saveArticle = (
-								<View style={styles.saveButton}>
-									<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Saved!</Text>
+								<View style={{
+									position: 'absolute',
+									top: 20,
+									bottom: 20,
+									left: 130,
+									right: 0,
+									justifyContent: 'flex-end',
+								}}>
+									<Image source={require("./checkmark.png")}
+										style={{
+											height: 35,
+											width: 35,
+										}}>
+
+									</Image>
 								</View>
+
 							);
+
+							deleteArticle = (
+								<TouchableOpacity onPress={() => articles.deleteArticle(this.props.article)}>
+									<View style={styles.deleteButton}>
+										<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Delete</Text>
+									</View>
+								</TouchableOpacity>
+
+							);
+
 						}
 
 
@@ -40,11 +67,12 @@ export default class Article extends Component {
 
 								<View style={styles.containerb}>
 									<TouchableOpacity onPress={() => articles.loadArticleInBrowser(this.props.article.pageid)}>
-										<View style={styles.button}>
+										<View style={styles.openButton}>
 											<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Open</Text>
 										</View>
 									</TouchableOpacity>
 									{saveArticle}
+									{deleteArticle}
 								</View>
 								<Compass></Compass>
 							</Card>
@@ -55,3 +83,33 @@ export default class Article extends Component {
 		);
 	}
 }/*this.props.article.thumbnail.source.replace(/[0-9]+px/g, '512px')*/
+
+
+/*
+
+<View>
+
+									<View >
+										{articles.state.showAnswer ?
+											<TouchableOpacity >
+												<View style={styles.button}>
+													<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}> Delete </Text>
+												</View>
+											</TouchableOpacity>
+
+
+
+											: null
+
+										}
+									</View>
+
+
+
+
+
+
+								</View>
+
+
+*/

@@ -57,9 +57,12 @@ export default class Compass extends React.Component {
               transform: [{ rotate: theta + 'rad' }]
             }}></Image>
         </ImageBackground>
-        <Text>{JSON.stringify(this.state.v)}</Text>
+        
       </View>
     )
   }
 
 }
+
+//<Text>{JSON.stringify(theta)}</Text> 
+//(this.state.v)

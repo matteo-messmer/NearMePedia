@@ -16,6 +16,7 @@ export default class LocationItem extends Component {
                 {
                     (position, articles) => {
                         return (
+                            
                             <TouchableOpacity style={styles.item} onPress={() => {
                                 position.setCoordinates(this.props.location.coords);
                                 articles.clear();

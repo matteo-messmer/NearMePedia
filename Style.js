@@ -58,6 +58,20 @@ const styles = StyleSheet.create({
         margin: 10
     },
 
+    openButton:
+    {
+        alignSelf: 'stretch',
+        borderWidth: 1,
+        padding: 12,
+        borderRadius: 8,
+        margin: 10,
+        color: "black",
+        backgroundColor: '#81b9bf',
+        borderColor: '#52898f',
+        height: 50,
+        width: 100,
+    },
+
     button:
     {
         alignSelf: 'stretch',
@@ -83,8 +97,37 @@ const styles = StyleSheet.create({
         backgroundColor: '#52898f',
         borderColor: '#225c62',
         height: 50,
-        width: 100
+        width: 90
     },
+
+   deleteButton:
+    {
+        alignSelf: 'stretch',
+        borderWidth: 1,
+        padding: 12,
+        borderRadius: 8,
+        margin: 10,
+        color: "black",
+        backgroundColor: '#ff4d4d',
+        borderColor: '#ff3434',
+        height: 50,
+        width: 90
+    },
+
+    deleteSaveButton:
+    {
+        alignSelf: 'stretch',
+        borderWidth: 1,
+        padding: 12,
+        borderRadius: 8,
+        margin: 10,
+        color: "black",
+        backgroundColor: '#ff4d4d',
+        borderColor: '#ff3434',
+        height: 50,
+        width: 230,
+    },
+
 	item: {
         alignSelf: 'stretch',
         borderWidth: 1,
