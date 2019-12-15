@@ -16,12 +16,12 @@ export default class MapScreen extends React.Component {
 						const markers = articles.state.savedArticles.map((article) => <Marker
 							coordinate={{ latitude: article.lat, longitude: article.lon }}
 							key={article.title}>
-							<MapView.Callout onPress={() => articles.loadArticleInBrowser(article.pageid)}>
-        <View>
-            <Text>{article.title}</Text>
-			
-        </View>
-    </MapView.Callout>
+								<MapView.Callout onPress={() => articles.loadArticleInBrowser(article.pageid)}>
+									<View>
+										<Text>{article.title}</Text>
+										
+									</View>
+								</MapView.Callout>
 							</Marker>);
 
 						return (
@@ -30,8 +30,8 @@ export default class MapScreen extends React.Component {
 								provider={PROVIDER_GOOGLE}
 								showsUserLocation
 								initialRegion={{
-									latitude: position.state.lat,
-									longitude: position.state.lon,
+									latitude: position.state.latitude,
+									longitude: position.state.longitude,
 									latitudeDelta: 1,
 									longitudeDelta: 1,
 								}}>

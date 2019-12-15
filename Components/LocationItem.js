@@ -1,91 +1,38 @@
 import React, { Component } from 'react';
 import { Platform, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
-import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
+import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
-import LocationsContainer from '../Unstated/LocationsContainer';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
 export default class LocationItem extends Component {
 
-    state = {
-        location: null,
-        errorMessage: null,
-        address: '',
-    };
-
-    geolocation = async (callback) => {
-        let address = this.props.city;
-        let position = await Location.geocodeAsync(address);
-        alert(position);
-
-        latitude = JSON.stringify(this.state.position[0].latitude);
-        longitude = JSON.stringify(this.state.position[0].longitude);
-        callback();
-
-
-        this.setState({ lat: latitude, lon: longitude });
-
-    };
-
     render() {
-
-        let city = this.props.city;
-     
-        let i = 0;
-
-        let latitude = '';
-        let longitude = '';
-        if (this.state.errorMessage) {
-            text = this.state.errorMessage;
-        } else if (this.state.location) {
-            latitude = JSON.stringify(this.state.location[0].latitude);
-            longitude = JSON.stringify(this.state.location[0].longitude);
-
-        }
-
-        //alert(this.props.city);
         return (
-
-            <Subscribe to={[LocationsContainer]}>
-                                {
-                                    locations => {
-                                        if (!locations.state.loaded) {
-                                            locations.geocodeLocations();
-                                            return null;
-                                        } else {
-                                            return (
-                                                <TouchableOpacity style={styles.item} 
-                            /*onPress={() => {
-                                position._getLocationAsync(() => {
-                                    pois.clear();
-                                    this.props.navigation.navigate("ScreenA");
-                                });}}*/
-                                >
-                                <View >
-                                    <Text style={styles.itemHeader}>{city}</Text>
-                                        <Text>Latitude:  {locations.state.savedLocations[i].coords.latitude}</Text>
-                                        <Text>Longitude:  {locations.state.savedLocations[i].coords.longitude}</Text>
-
-                                </View>
-                            </TouchableOpacity>
-                                            );
-                                        }
-                                    }
-                                }
-                            </Subscribe>
-
-
-            
-
-        );
-    }
-
-
+			<Subscribe to={[PositionContainer, ArticlesContainer]}>
+				{
+					(position, articles) => {
+						return (					
+							<TouchableOpacity style={styles.item} onPress={() => {
+																													position.setCoordinates(this.props.location.coords);
+																													alert(this.props.location.coords.latitude);
+																													articles.clear();
+																													this.props.navigation.navigate("Home");
+																												}
+																									}>
+								<View>
+									<Text style={styles.itemHeader}>{this.props.location.city}</Text>
+								</View>
+							</TouchableOpacity>
+						);
+					}
+				}
+			</Subscribe>
+		);
+	}
 }
-
 
 const styles = StyleSheet.create({
     container: {

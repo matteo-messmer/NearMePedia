@@ -4,15 +4,15 @@ import { Container } from "unstated";
 export default class PositionContainer extends Container {
 	
     state = {
-		lat:0, 
-		lon:0,
+		latitude:0, 
+		longitude:0,
 		location : '',
     };
 
 	geoLocate = async (callback) => {	
 		await navigator.geolocation.getCurrentPosition(
 			position => {
-				this.setState({ lat: position.coords.latitude, lon: position.coords.longitude });
+				this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude });
 				callback();
 			},
 			error => Alert.alert(error.message),
@@ -21,7 +21,7 @@ export default class PositionContainer extends Container {
 		}
 	
 	setCoordinates = async (coords) => {
-		await this.setState({	lat:coords.lat, lon:coords.lon});
+		await this.setState({	latitude:coords.latitude, longitude:coords.longitude});
 		//console.log(coords);
 	}
 
@@ -53,14 +53,14 @@ export default class PositionContainer extends Container {
     };
 	*/
 	
-	distance = (lat, lon) => {
-		if ((lat == this.state.lat) && (lon== this.state.lon)) {
+	distance = (latitude, longitude) => {
+		if ((latitude == this.state.latitude) && (longitude== this.state.longitude)) {
 			return 0;
 		}
 		else {
-			const radlat1 = Math.PI * lat/180;
-			const radlat2 = Math.PI * this.state.lat/180;
-			const theta = lon-this.state.lon;
+			const radlat1 = Math.PI * latitude/180;
+			const radlat2 = Math.PI * this.state.latitude/180;
+			const theta = longitude-this.state.longitude;
 			const radtheta = Math.PI * theta/180;
 			let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
 			if (dist > 1) {

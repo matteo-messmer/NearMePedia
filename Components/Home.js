@@ -24,7 +24,7 @@ export default class Home extends Component {
 						const { nearArticles, error, loading } = pois.state;
 
 						if (!nearArticles && !error && !loading) {
-							pois.getArticlesFromApiAsync(position.state.lat, position.state.lon);
+							pois.getArticlesFromApiAsync(position.state.latitude, position.state.longitude);
 						}
 							
 							

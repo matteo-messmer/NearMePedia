@@ -42,52 +42,14 @@ export default class LocationsContainer extends Container {
 		loaded: false,
 	};
   
-  		/*this.setState({
-				savedLocations: [
-					...this.state.savedLocations,
-					savedLocations[i]: {
-						...this.state.savedLocations[i],
-						[city]: geo[0].city
-					}
-				]
-			});*/
+	// coords to city name
 	reverseGeocodeLocations = async () => {
 		let locations = this.state.savedLocations;
 		for(let i = 0; i < locations.length; i++) {
-			
 				let geo = await Location.reverseGeocodeAsync(locations[i].coords);
 
-				locations[i].city = geo[0].city;
-				//alert(savedLocations[i].city);
-			
+				locations[i].city = geo[0].city;			
 		}
 		this.setState({loaded: true, savedLocations:locations});
 	};
-
-	geocodeLocations = async () => {
-		let locations = this.state.savedLocations;
-		for(let i = 0; i < locations.length; i++) {
-			
-				let geo = await Location.geocodeAsync(city);
-
-				locations[i].city = geo[0].city;
-				//alert(savedLocations[i].city);
-				
-			
-		}
-		this.setState({loaded: true, savedLocations:locations});
-	};
-
-
-	clear = () => {
-		this.setState({ nearArticles: null });
-	};
-
-	saveArticle = async (article) => {
-		if(this.state.savedArticles.some(a => a.title === article.title)){
-			alert('Article already in the reading list: ' + article.title);
-		} else {
-			await this.setState(state => ({savedArticles: [...state.savedArticles, article]}));
-		}
-	}
 }
