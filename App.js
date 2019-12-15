@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'unstated';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { Text, ListView, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';

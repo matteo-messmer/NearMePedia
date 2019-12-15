@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { Container } from "unstated";
 
 export default class PositionContainer extends Container {

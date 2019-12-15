@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
-import styles from '../Style';
 
 export default class MapScreen extends React.Component {
 	render() {
@@ -16,13 +15,13 @@ export default class MapScreen extends React.Component {
 						const markers = articles.state.savedArticles.map((article) => <Marker
 							coordinate={{ latitude: article.lat, longitude: article.lon }}
 							key={article.title}>
-								<MapView.Callout onPress={() => articles.loadArticleInBrowser(article.pageid)}>
-									<View>
-										<Text>{article.title}</Text>
-										
-									</View>
-								</MapView.Callout>
-							</Marker>);
+							<MapView.Callout onPress={() => articles.loadArticleInBrowser(article.pageid)}>
+								<View>
+									<Text>{article.title}</Text>
+
+								</View>
+							</MapView.Callout>
+						</Marker>);
 
 						return (
 							<MapView
@@ -42,7 +41,7 @@ export default class MapScreen extends React.Component {
 						);
 					}
 				}
-			</Subscribe>
+			</Subscribe >
 		);
 	}
 }
