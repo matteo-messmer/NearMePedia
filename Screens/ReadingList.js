@@ -3,7 +3,7 @@ import ArticlesContainer from '../Unstated/ArticlesContainer';
 import { Subscribe } from 'unstated';
 import { Text, TouchableOpacity, View } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
-import ArticlesList from './ArticlesList';
+import ArticlesList from '../Components/ArticlesList';
 import styles from '../Style';
 
 export default class ReadingList extends Component {

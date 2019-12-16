@@ -5,19 +5,19 @@ export default class PositionContainer extends Container {
     state = {
 		latitude:0, 
 		longitude:0,
-		location : '',
+		loading: false,
     };
 
-	geoLocate = async (callback) => {	
+	geoLocate = async () => {	
+		this.setState({loading:true});
 		await navigator.geolocation.getCurrentPosition(
 			position => {
-				this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude });
-				callback();
+				this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude, loading:false });
 			},
 			error => Alert.alert(error.message),
 			{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
 		);
-		}
+	}
 	
 	setCoordinates = async (coords) => {
 		await this.setState({	latitude:coords.latitude, longitude:coords.longitude});

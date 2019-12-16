@@ -6,24 +6,19 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         flex: 1,
         backgroundColor: '#eeeeee',
-        //justifyContent: 'space-between',
         textAlign: 'center',
     },
-
-    containerb: {
+    buttonRow: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-
-
     article: {
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
         borderRadius: 10,
     },
-
     background: {
         backgroundColor: '#eeeeee',
         fontSize: 17,
@@ -31,33 +26,28 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         marginLeft: 1,
     },
-
     title: {
         textAlign: 'center',
         marginVertical: 8,
         fontSize: 23,
         fontWeight: 'bold',
     },
-
     body: {
         textAlign: 'center',
         marginVertical: 8,
         fontSize: 19,
     },
-
     separator: {
         marginVertical: 4,
         borderBottomColor: 'black',
         borderBottomWidth: StyleSheet.hairlineWidth,
     },
-
     input: {
         borderColor: 'black',
         borderWidth: 1,
         padding: 5,
         margin: 10
     },
-
     openButton:
     {
         alignSelf: 'stretch',
@@ -71,7 +61,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: 100,
     },
-
     button:
     {
         alignSelf: 'stretch',
@@ -85,7 +74,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: 150,
     },
-
     saveButton:
     {
         alignSelf: 'stretch',
@@ -99,7 +87,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: 90
     },
-
    deleteButton:
     {
         alignSelf: 'stretch',
@@ -113,7 +100,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: 90
     },
-
     deleteSaveButton:
     {
         alignSelf: 'stretch',
@@ -127,7 +113,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: 230,
     },
-
 	item: {
         alignSelf: 'stretch',
         borderWidth: 1,
@@ -140,8 +125,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'black'
     },
-
-
 });
 
 export default styles;

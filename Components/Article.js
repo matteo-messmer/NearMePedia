@@ -65,7 +65,7 @@ export default class Article extends Component {
 							<Card title={this.props.article.title}>
 								<Text>Distance: {this.props.distance.toFixed(1)} Km</Text>
 
-								<View style={styles.containerb}>
+								<View style={styles.buttonRow}>
 									<TouchableOpacity onPress={() => articles.loadArticleInBrowser(this.props.article.pageid)}>
 										<View style={styles.openButton}>
 											<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Open</Text>
@@ -82,34 +82,4 @@ export default class Article extends Component {
 			</Subscribe>
 		);
 	}
-}/*this.props.article.thumbnail.source.replace(/[0-9]+px/g, '512px')*/
-
-
-/*
-
-<View>
-
-									<View >
-										{articles.state.showAnswer ?
-											<TouchableOpacity >
-												<View style={styles.button}>
-													<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}> Delete </Text>
-												</View>
-											</TouchableOpacity>
-
-
-
-											: null
-
-										}
-									</View>
-
-
-
-
-
-
-								</View>
-
-
-*/
+}

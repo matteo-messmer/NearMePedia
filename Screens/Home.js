@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
-import { Text, SafeAreaView, Button, } from 'react-native';
-import ArticlesList from './ArticlesList';
+import { Text, SafeAreaView, Button, ActivityIndicator} from 'react-native';
+import ArticlesList from '../Components/ArticlesList';
 import styles from '../Style';
 
 export default class Home extends Component {
@@ -16,15 +16,21 @@ export default class Home extends Component {
 				<Subscribe to={[ArticlesContainer, PositionContainer]}>
 					{
 						(articles, position) => {
-							const { nearArticles, error, loading } = articles.state;
+							if(position.state.loading) {
+								return (
+									<ActivityIndicator size="large" color="#0000ff" />
+								);
+							} else {
+								const { nearArticles, error, loading } = articles.state;
 
-							if (!nearArticles && !error && !loading) {
-								articles.getArticlesFromApiAsync(position.state.latitude, position.state.longitude);
+								if (!nearArticles && !error && !loading) {
+									articles.getArticlesFromApiAsync(position.state.latitude, position.state.longitude);
+								}
+
+								return (
+									<ArticlesList data={articles.state.nearArticles} />
+								);
 							}
-
-							return (
-								<ArticlesList data={articles.state.nearArticles} />
-							);
 						}
 					}
 				</Subscribe>

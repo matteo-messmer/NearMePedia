@@ -5,7 +5,7 @@ import { Subscribe } from 'unstated';
 import { Text, View, ScrollView } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { TouchableOpacity, FlatList } from 'react-native-gesture-handler';
-import LocationItem from './LocationItem';
+import LocationItem from '../Components/LocationItem';
 import LocationsContainer from '../Unstated/LocationsContainer';
 import styles from '../Style';
 
@@ -22,18 +22,17 @@ export default class ChangeLocation extends Component {
 
 			<SafeAreaView style={styles.container}>
 				<ScrollView>
-					<View style={styles.containerb}>
+					<View style={styles.buttonRow}>
 						<Subscribe to={[PositionContainer, ArticlesContainer]}>
 							{
 								(position, articles) => {
 									return (
 										<TouchableOpacity onPress={() => {
-											position.geoLocate(() => {
-												articles.clear();
-												this.props.navigation.navigate("Home");
-											});
-										}
-										}>
+																							position.geoLocate();
+																							articles.clear();
+																							this.props.navigation.navigate("Home");
+																						}
+																					}>
 											<View style={styles.button}>
 												<Text style={{ color: 'black', textAlign: 'center', fontSize: 17 }}>Current Position</Text>
 											</View>

@@ -4,11 +4,11 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Home from './Components/Home';
-import ChangeLocation from './Components/ChangeLocation';
-import ReadingList from './Components/ReadingList';
-import MapScreen from './Components/MapScreen';
-import AddLocation from './Components/AddLocation'
+import ReadingList from './Screens/ReadingList';
+import Home from './Screens/Home';
+import ChangeLocation from './Screens/ChangeLocation';
+import MapScreen from './Screens/MapScreen';
+import AddLocation from './Screens/AddLocation'
 
 const stackRoutes = {
   Home: Home,
