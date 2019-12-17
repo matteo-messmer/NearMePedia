@@ -3,8 +3,8 @@ import { Container } from "unstated";
 export default class PositionContainer extends Container {
 	
     state = {
-		latitude:0, 
-		longitude:0,
+		latitude:46.4892648, 
+		longitude:11.3296481,
 		geoLocation: null,
 		loading: false,
 		time:0,
