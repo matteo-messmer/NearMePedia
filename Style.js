@@ -1,10 +1,20 @@
 
 import { StyleSheet } from 'react-native';
 
+const primaryColor = '#81b9bf';
+const primaryDarkColor = '#52898f';
+const secondaryColor = '#52898f';
+const secondaryDarkColor = '#225c62';
+const red = '#ff4d4d';
+const darkRed = '#ff4d4d';
+const lightGray = '#eeeeee';
+const gray = '#dddddd';
+const darkGray = '#aaaaaa';
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#eeeeee',
+        backgroundColor: lightGray,
     },
     rowContainer: {
         flex: 1,
@@ -29,23 +39,23 @@ const styles = StyleSheet.create({
 		marginLeft:10
 	},
     textInput: {
-        borderColor: '#aaaaaa',
+        borderColor: darkGray,
         borderWidth: 1,
         padding: 5,
         margin: 10
     },
     separator: {
         marginVertical: 4,
-        borderBottomColor: '#aaaaaa',
+        borderBottomColor: darkGray,
         borderBottomWidth: StyleSheet.hairlineWidth,
     },
     primaryButton:
     {
         margin: 10,
-        backgroundColor: '#81b9bf',
+        backgroundColor: primaryColor,
         borderWidth: 1,
         borderRadius: 4,
-        borderColor: '#52898f',
+        borderColor: primaryDarkColor,
         height: 40,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -55,8 +65,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 4,
         margin: 10,
-        backgroundColor: '#52898f',
-        borderColor: '#225c62',
+        backgroundColor: secondaryColor,
+        borderColor: secondaryDarkColor,
         height: 40,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -66,8 +76,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 4,
         margin: 10,
-        backgroundColor: '#ff4d4d',
-        borderColor: '#ff3434',
+        backgroundColor: red,
+        borderColor: darkRed,
         height: 40,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -76,8 +86,8 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
         borderRadius: 4,
         margin: 10,
-        backgroundColor: '#dddddd',
-        borderColor: '#aaaaaa',
+        backgroundColor: gray,
+        borderColor: darkGray,
         height: 40,
         width: 40,
 		justifyContent: 'center',
@@ -92,13 +102,18 @@ const styles = StyleSheet.create({
 	listViewItem: {
 		height:40,
         borderWidth: 0.5,
-		borderColor: '#aaaaaa',
+		borderColor: darkGray,
         paddingLeft: 10,
 		justifyContent: 'center',
     },
 	listViewItemText: {
         fontSize: 17
     },
+	marker: {
+		borderRadius: 4,
+		padding: 10,
+		fontSize:17,
+	}
 });
 
 export default styles;

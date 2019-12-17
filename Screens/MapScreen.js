@@ -5,6 +5,7 @@ import { Marker } from 'react-native-maps';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
+import styles from '../Style';
 
 export default class MapScreen extends React.Component {
 	render() {
@@ -12,16 +13,17 @@ export default class MapScreen extends React.Component {
 			<Subscribe to={[ArticlesContainer, PositionContainer]}>
 				{
 					(articles, position) => {
-						const markers = articles.state.savedArticles.map((article) => <Marker
-							coordinate={{ latitude: article.lat, longitude: article.lon }}
-							key={article.title}>
-							<MapView.Callout onPress={() => articles.loadArticleInBrowser(article.pageid)}>
-								<View>
-									<Text>{article.title}</Text>
+						const markers = articles.state.savedArticles.map((article) => 
+							<Marker 
+								coordinate={{ latitude: article.lat, longitude: article.lon }}
+								key={article.title}>
+								<MapView.Callout onPress={() => articles.loadArticleInBrowser(article.pageid)}>
+									<View>
+										<Text style={styles.marker}>{article.title}</Text>
 
-								</View>
-							</MapView.Callout>
-						</Marker>);
+									</View>
+								</MapView.Callout>
+							</Marker>);
 
 						return (
 							<MapView
