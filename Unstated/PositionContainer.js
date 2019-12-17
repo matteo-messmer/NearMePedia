@@ -5,15 +5,22 @@ export default class PositionContainer extends Container {
     state = {
 		latitude:0, 
 		longitude:0,
-		loading: false
+		loading: false,
     };
-	
-	waitGPS = (callback) => {
-		this.setState({loading: true}, callback);
+
+	geoLocate = async () => {	
+		this.setState({loading:true});
+		await navigator.geolocation.getCurrentPosition(
+			position => {
+				this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude, loading:false });
+			},
+			error => Alert.alert(error.message),
+			{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+		);
 	}
-		
+	
 	setCoordinates = (coords) => {
-		this.setState({	latitude:coords.latitude, longitude:coords.longitude, loading:false });
+		this.setState({	latitude:coords.latitude, longitude:coords.longitude});
 	}
 	
 	distance = (latitude, longitude) => {

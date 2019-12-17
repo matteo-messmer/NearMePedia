@@ -39,7 +39,7 @@ export default class Article extends Component {
 						return (
 							<Card title={this.props.article.title}>
 								<View style={styles.cardContent}>
-									<Compass size={"100"} coords={{lat: this.props.article.lat, lon:this.props.article.lon}}/>
+									<Compass />
 									<Text style={styles.cardText}>Distance: {this.props.distance.toFixed(1)} Km</Text>
 								</View>
 								<View style={styles.rowContainer}>
@@ -62,4 +62,4 @@ export default class Article extends Component {
 			</Subscribe>
 		);
 	}
-}
+}//<Compass></Compass>
