@@ -1,7 +1,8 @@
 import { Container } from "unstated";
-import { Linking } from 'react-native';
+import { Linking, AsyncStorage  } from 'react-native';
+import { PersistContainer } from 'unstated-persist';
 
-export default class ArticlesContainer extends Container {
+export default class ArticlesContainer extends PersistContainer {
 	
 	state = {
 		savedArticles: [],
@@ -57,4 +58,10 @@ export default class ArticlesContainer extends Container {
 		let articles = this.state.savedArticles.filter(a => a.title !== article.title);
 		this.setState({savedArticles: articles});
 	};
+	
+	 persist = {
+		key: 'articles',
+		version: 1,
+		storage: AsyncStorage,
+	  };
 }

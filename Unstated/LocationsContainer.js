@@ -1,49 +1,15 @@
 import { Container } from "unstated";
 import * as Location from 'expo-location';
+import {  AsyncStorage  } from 'react-native';
+import { PersistContainer } from 'unstated-persist';
 
-export default class LocationsContainer extends Container {
+export default class LocationsContainer extends PersistContainer {
 	
 	state = {
 		newLocation: {
 			city: ""
 		},
-		savedLocations: [
-			{
-				coords: {
-					latitude: 46.5024218,
-					longitude: 11.3591007
-				},
-				city: ""
-			},
-			{
-				coords: {
-					latitude: 40.7128,
-					longitude: -74.0059
-				},
-				city: ""
-			},
-			{
-				coords: {
-					latitude: 48.8589507,
-					longitude: 2.2770205
-				},
-				city: ""
-			},			
-			{
-				coords: {
-					latitude: 52.5069704,
-					longitude: 13.2846505
-				},
-				city: ""
-			},	
-			{
-				coords: {
-					latitude: -33.8678500,
-					longitude: 151.2073200
-				},
-				city: ""
-			}
-		],
+		savedLocations: [],
 		loaded: false,
 	};
 	
@@ -80,4 +46,9 @@ export default class LocationsContainer extends Container {
 			alert("Location not found");
 		}
 	}
+	persist = {
+		key: 'locations',
+		version: 1,
+		storage: AsyncStorage,
+	  };
 }
