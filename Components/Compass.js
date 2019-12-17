@@ -8,6 +8,10 @@ import { Subscribe } from 'unstated';
 const CompassFace = ({ width, height }) => (
   <G>
     <Circle cx={width / 2} cy={height / 2} r={width / 2} fill="black" />
+		<SvgText fill="white" fontSize="15" x={(width/2) - 6} y={20}>N</SvgText>
+      <SvgText fill="white" fontSize="15" x={(width/2) - 6} y={height - 10}>S</SvgText>
+      <SvgText fill="white" fontSize="15" x={10} y={(height/2) + 7}>W</SvgText>
+      <SvgText fill="white" fontSize="15" x={width - 15} y={(height/2) + 7}>E</SvgText>
   </G>
 );
 
