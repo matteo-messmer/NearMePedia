@@ -63,17 +63,21 @@ export default class LocationsContainer extends Container {
 	}
 	
 	saveLocation = async () => {
-        let location = await Location.geocodeAsync(this.state.newLocation.city);
-		
-		let savedLocations = this.state.savedLocations;
-		savedLocations.push({
-			city: this.state.newLocation.city, 
-			coords: {
-				latitude: location[0].latitude,
-				longitude: location[0].longitude
-			}
-		});
-		
-		this.setState({ savedLocations });
+		try {
+			let location = await Location.geocodeAsync(this.state.newLocation.city);
+			
+			let savedLocations = this.state.savedLocations;
+			savedLocations.push({
+				city: this.state.newLocation.city, 
+				coords: {
+					latitude: location[0].latitude,
+					longitude: location[0].longitude
+				}
+			});
+			
+			this.setState({ savedLocations });
+		} catch {
+			alert("Location not found");
+		}
 	}
 }
