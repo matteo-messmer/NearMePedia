@@ -29,7 +29,7 @@ export default class ChangeLocation extends Component {
 									(position, articles) => {
 										return (
 											<TouchableOpacity onPress={() => {
-																								position.geoLocate();
+																								position.setGeolocationAsPosition();
 																								articles.clear();
 																								this.props.navigation.navigate("Home");
 																							}

@@ -11,6 +11,7 @@ export default class ArticlesList extends Component {
 			<Subscribe to={[PositionContainer]}>
 				{
 					(position) => {
+						position.geoLocate();
 						return (
 							<FlatList data={this.props.data}
 								renderItem={
