@@ -38,8 +38,10 @@ export default class Article extends Component {
 
 						return (
 							<Card title={this.props.article.title}>
-								<Text style={styles.cardText}>Distance: {this.props.distance.toFixed(1)} Km</Text>
-
+								<View style={styles.cardContent}>
+									<Compass />
+									<Text style={styles.cardText}>Distance: {this.props.distance.toFixed(1)} Km</Text>
+								</View>
 								<View style={styles.rowContainer}>
 									<View style={styles.fillColumn}>
 										<TouchableOpacity onPress={() => articles.loadArticleInBrowser(this.props.article.pageid)}>

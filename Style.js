@@ -35,8 +35,9 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         fontSize: 19,
     },
-	cardText: {
-		marginLeft:10
+	cardContent: {
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
     textInput: {
         borderColor: darkGray,
