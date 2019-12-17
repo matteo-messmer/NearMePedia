@@ -97,11 +97,17 @@ const styles = StyleSheet.create({
 		margin: 10 
 	},
 	listViewItem: {
-		height:40,
-        borderWidth: 0.5,
-		borderColor: darkGray,
-        paddingLeft: 10,
-		justifyContent: 'center',
+		alignSelf: 'stretch',
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 4,
+        margin: 5,
+        height: 40,
+        color: "black",
+        justifyContent: 'center',
+		//alignItems: 'center',
+        //backgroundColor: '#a6a6a6',
+        //width: "50%",
     },
 	listViewItemText: {
         fontSize: 17
