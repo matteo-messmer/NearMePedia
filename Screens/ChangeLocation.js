@@ -54,23 +54,31 @@ export default class ChangeLocation extends Component {
 					
 					<View>
 						<Separator />
-						<Text style={styles.title}>Other locations you might like</Text>
+						<Text style={styles.title}>Saved Locations</Text>
 					</View>
 
 					<Subscribe to={[LocationsContainer]}>
 						{
 							locations => {
-								if (!locations.state.loaded) {
-									locations.reverseGeocodeLocations();
-									return null;
-								} else {
+								if(locations.state.savedLocations.length === 0) {
 									return (
-										<FlatList style={styles.plainList}
-											data={locations.state.savedLocations}
-											renderItem={({ item }) => <LocationItem location={item} navigation={this.props.navigation} />}
-											keyExtractor={item => item.city}
-										/>
+										<View>									
+											<Text style={styles.subtitle}>Add some locations to select them here</Text>
+										</View>
 									);
+								} else {							
+									if (!locations.state.loaded) {
+										locations.reverseGeocodeLocations();
+										return null;
+									} else {
+										return (
+											<FlatList style={styles.plainList}
+												data={locations.state.savedLocations}
+												renderItem={({ item }) => <LocationItem location={item} navigation={this.props.navigation} />}
+												keyExtractor={item => item.city}
+											/>
+										);
+									}
 								}
 							}
 						}

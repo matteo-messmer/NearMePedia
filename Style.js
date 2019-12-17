@@ -1,4 +1,3 @@
-
 import { StyleSheet } from 'react-native';
 
 const primaryColor = '#81b9bf';
@@ -105,9 +104,6 @@ const styles = StyleSheet.create({
         height: 40,
         color: "black",
         justifyContent: 'center',
-		//alignItems: 'center',
-        //backgroundColor: '#a6a6a6',
-        //width: "50%",
     },
 	listViewItemText: {
         fontSize: 17
