@@ -16,17 +16,16 @@ export default class LocationItem extends Component {
                 {
                     (position, articles) => {
                         return (
-                            
-                                <View style={styles.listViewItem} >
-                            <TouchableOpacity onPress={() => {
-																			position.setCoordinates(this.props.location.coords);
-																			articles.clear();
-																			this.props.navigation.navigate("Home");
-																		}
-																	}>
-                                    <Text style={styles.listViewItemText}>{this.props.location.city}</Text>
-                            </TouchableOpacity>
-                                </View>
+							<View style={styles.listViewItem} >
+								<TouchableOpacity onPress={() => {
+																				position.setCoordinates(this.props.location.coords);
+																				articles.clear();
+																				this.props.navigation.navigate("Home");
+																			}
+																		}>
+										<Text style={styles.listViewItemText}>{this.props.location.city}</Text>
+								</TouchableOpacity>
+							</View>
                         );
                     }
                 }

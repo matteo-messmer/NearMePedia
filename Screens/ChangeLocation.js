@@ -7,6 +7,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { TouchableOpacity, FlatList } from 'react-native-gesture-handler';
 import LocationItem from '../Components/LocationItem';
 import LocationsContainer from '../Unstated/LocationsContainer';
+import GPSContainer from '../Unstated/GPSContainer';
 import styles from '../Style';
 
 function Separator() {
@@ -24,14 +25,16 @@ export default class ChangeLocation extends Component {
 				<ScrollView>
 					<View style={styles.rowContainer}>
 						<View style={styles.fillColumn}>
-							<Subscribe to={[PositionContainer, ArticlesContainer]}>
+							<Subscribe to={[PositionContainer, ArticlesContainer, GPSContainer]}>
 								{
-									(position, articles) => {
+									(position, articles, gps) => {
 										return (
 											<TouchableOpacity onPress={() => {
-																								position.geoLocate();
+																								gps.geoLocate();
 																								articles.clear();
-																								this.props.navigation.navigate("Home");
+																								position.waitGPS(() => {
+																									this.props.navigation.navigate("Home");
+																								});
 																							}
 																						}>
 												<View style={styles.primaryButton}>
