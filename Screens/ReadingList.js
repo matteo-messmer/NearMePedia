@@ -10,29 +10,13 @@ export default class ReadingList extends Component {
 
 	render() {
 		return (
-
-
 			<SafeAreaView style={styles.container}>
-
-				<Text style={styles.background}>Here's a list of locations you saved.</Text>
-				<Text style={styles.background}>Click here to delete all the saved locations!</Text>
-
 				<Subscribe to={[ArticlesContainer]}>
 					{
 						(pois, articles) => {
 							return (
-
-								<View>
-								<TouchableOpacity onPress={() => {
-                                articles.clearSavedArticles();
-                                this.props.navigation.navigate("Home");
-                            }
-                            }>
-									<View style={styles.deleteSaveButton}>
-										<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Delete all the articles</Text>
-									</View>
-								</TouchableOpacity> 
-								<ArticlesList data={pois.state.savedArticles}/>
+								<View>									
+									<ArticlesList data={pois.state.savedArticles}/>
 								</View>
 							);
 						}

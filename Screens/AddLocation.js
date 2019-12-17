@@ -17,37 +17,25 @@ export default class AddLocation extends Component {
 
             <SafeAreaView style={styles.container}>
                 <ScrollView>
-                    <View style={styles.container}>
-                        <View>
-
-                            <Text style={styles.title}>
-                                Add a new location</Text>
-                            <Separator />
-                        </View>
-
-                    </View>
-                    <View>
-
-                        <Text style={styles.body}>Insert the location you want to add</Text>
-
+					<View>
                         <Subscribe to={[LocationsContainer]}>
                             {
                                 locations => {
                                     return (
                                         <View>
                                             <View>
-                                                <TextInput
-                                                    style={styles.input}
-                                                    onChangeText={value => locations.setNewLocation(value)} />
+                                                <TextInput style={styles.textInput} 
+													onChangeText={value => locations.setNewLocation(value)} 
+													placeholder="Address" />
                                             </View>
                                             <View>
                                                 <TouchableOpacity onPress={() => {
-                                                    locations.saveLocation();
-                                                    this.props.navigation.navigate('ChangeLocation');
-                                                }
-                                                }>
-                                                    <View style={styles.button}>
-                                                        <Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Save</Text>
+																								locations.saveLocation();
+																								this.props.navigation.navigate('ChangeLocation');
+																							}
+																						}>
+                                                    <View style={styles.primaryButton}>
+                                                        <Text style={styles.buttonText}>Save</Text>
                                                     </View>
                                                 </TouchableOpacity>
                                             </View>
@@ -56,7 +44,6 @@ export default class AddLocation extends Component {
                                 }
                             }
                         </Subscribe>
-                        <Separator />
                     </View>
                 </ScrollView>
             </SafeAreaView>

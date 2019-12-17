@@ -12,14 +12,12 @@ export default class ArticlesList extends Component {
 				{
 					(position) => {
 						return (
-							<FlatList style={styles.background}
-								data={this.props.data}
+							<FlatList data={this.props.data}
 								renderItem={
 									({ item }) =>
 										<Article article={item} distance={position.distance(item.lat, item.lon)} />
 								}
-								keyExtractor={item => item.title}
-							/>
+								keyExtractor={item => item.title} />
 						);
 					}
 				}

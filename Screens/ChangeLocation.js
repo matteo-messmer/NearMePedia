@@ -22,36 +22,39 @@ export default class ChangeLocation extends Component {
 
 			<SafeAreaView style={styles.container}>
 				<ScrollView>
-					<View style={styles.buttonRow}>
-						<Subscribe to={[PositionContainer, ArticlesContainer]}>
-							{
-								(position, articles) => {
-									return (
-										<TouchableOpacity onPress={() => {
-																							position.geoLocate();
-																							articles.clear();
-																							this.props.navigation.navigate("Home");
-																						}
-																					}>
-											<View style={styles.button}>
-												<Text style={{ color: 'black', textAlign: 'center', fontSize: 17 }}>Current Position</Text>
-											</View>
-										</TouchableOpacity>
-									);
+					<View style={styles.rowContainer}>
+						<View style={styles.fillColumn}>
+							<Subscribe to={[PositionContainer, ArticlesContainer]}>
+								{
+									(position, articles) => {
+										return (
+											<TouchableOpacity onPress={() => {
+																								position.geoLocate();
+																								articles.clear();
+																								this.props.navigation.navigate("Home");
+																							}
+																						}>
+												<View style={styles.primaryButton}>
+													<Text style={styles.buttonText}>Current Position</Text>
+												</View>
+											</TouchableOpacity>
+										);
+									}
 								}
-							}
-						</Subscribe>
-
-						<TouchableOpacity onPress={() => this.props.navigation.navigate("AddLocation")}>
-							<View style={styles.button}>
-								<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Add Location</Text>
-							</View>
-						</TouchableOpacity>
+							</Subscribe>
+						</View>
+						<View style={styles.fillColumn}>
+							<TouchableOpacity onPress={() => this.props.navigation.navigate("AddLocation")}>
+								<View style={styles.primaryButton}>
+									<Text style={styles.buttonText}>Add Location</Text>
+								</View>
+							</TouchableOpacity>
+						</View>
 					</View>
-
+					
 					<View>
-						<Text style={styles.title}>Other locations you might like</Text>
 						<Separator />
+						<Text style={styles.title}>Other locations you might like</Text>
 					</View>
 
 					<Subscribe to={[LocationsContainer]}>
@@ -62,7 +65,7 @@ export default class ChangeLocation extends Component {
 									return null;
 								} else {
 									return (
-										<FlatList
+										<FlatList style={styles.plainList}
 											data={locations.state.savedLocations}
 											renderItem={({ item }) => <LocationItem location={item} navigation={this.props.navigation} />}
 											keyExtractor={item => item.city}

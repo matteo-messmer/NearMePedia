@@ -54,7 +54,7 @@ export default class Compass extends React.Component {
               height: 100,
               width: 100,
               opacity: 0.65,
-              transform: [{ rotate: theta + 'rad' }]
+              
             }}></Image>
         </ImageBackground>
         

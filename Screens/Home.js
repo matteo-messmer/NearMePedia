@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import ArticlesContainer from '../Unstated/ArticlesContainer';
 import PositionContainer from '../Unstated/PositionContainer';
 import { Subscribe } from 'unstated';
-import { Text, SafeAreaView, Button, ActivityIndicator} from 'react-native';
+import { Text, SafeAreaView, Button, ActivityIndicator, TouchableOpacity, View} from 'react-native';
 import ArticlesList from '../Components/ArticlesList';
 import styles from '../Style';
+
 
 export default class Home extends Component {
 
 	render() {
 		return (
 			<SafeAreaView style={styles.container}>
-
-				<Text style={styles.background}>Here's a list of locations around your selected position</Text>
 				<Subscribe to={[ArticlesContainer, PositionContainer]}>
 					{
 						(articles, position) => {
@@ -41,7 +41,9 @@ export default class Home extends Component {
 
 Home.navigationOptions = ({ navigation }) => ({
 	title: "Articles",
-	headerRight: <Button
-		title="Change location"
-		onPress={() => navigation.navigate("ChangeLocation")} />
+	headerRight: <TouchableOpacity onPress={() => { navigation.navigate('ChangeLocation');}}>
+							<View style={styles.iconButton}>
+								<Ionicons name="ios-navigate" size={25} />
+							</View>
+                           </TouchableOpacity>
 })

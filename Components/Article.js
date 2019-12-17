@@ -14,67 +14,45 @@ export default class Article extends Component {
 			<Subscribe to={[ArticlesContainer]}>
 				{
 					articles => {
-						let saveArticle;
-						let deleteArticle;
+						let actionButton;
+						
+						//if the articles has not been saved
 						if (!articles.state.savedArticles.some(l => l.title === this.props.article.title)) {
-							saveArticle = (
+							actionButton = (
 								<TouchableOpacity onPress={() => articles.saveArticle(this.props.article)}>
-
-									<View style={styles.saveButton}>
-										<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Save</Text>
+									<View style={styles.secondaryButton}>
+										<Text style={styles.buttonText}>Save</Text>
 									</View>
-
 								</TouchableOpacity>
 							);
-
-
-						} else {
-							saveArticle = (
-								<View style={{
-									position: 'absolute',
-									top: 20,
-									bottom: 20,
-									left: 130,
-									right: 0,
-									justifyContent: 'flex-end',
-								}}>
-									<Image source={require("./checkmark.png")}
-										style={{
-											height: 35,
-											width: 35,
-										}}>
-
-									</Image>
-								</View>
-
-							);
-
-							deleteArticle = (
+						} 
+						else {
+							actionButton = (
 								<TouchableOpacity onPress={() => articles.deleteArticle(this.props.article)}>
 									<View style={styles.deleteButton}>
-										<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Delete</Text>
+										<Text style={styles.buttonText}>Delete</Text>
 									</View>
 								</TouchableOpacity>
-
 							);
-
 						}
-
 
 						return (
 							<Card title={this.props.article.title}>
-								<Text>Distance: {this.props.distance.toFixed(1)} Km</Text>
+								<Text style={styles.cardText}>Distance: {this.props.distance.toFixed(1)} Km</Text>
 
-								<View style={styles.buttonRow}>
-									<TouchableOpacity onPress={() => articles.loadArticleInBrowser(this.props.article.pageid)}>
-										<View style={styles.openButton}>
-											<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Open</Text>
-										</View>
-									</TouchableOpacity>
-									{saveArticle}
-									{deleteArticle}
+								<View style={styles.rowContainer}>
+									<View style={styles.fillColumn}>
+										<TouchableOpacity onPress={() => articles.loadArticleInBrowser(this.props.article.pageid)}>
+											<View style={styles.primaryButton}>
+												<Text style={{ color: 'black', textAlign: 'center', fontSize: 19 }}>Open</Text>
+											</View>
+										</TouchableOpacity>
+									</View>
+									<View style={styles.fillColumn}>
+										{actionButton}
+									</View>
 								</View>
-								<Compass></Compass>
+								
 							</Card>
 						);
 					}
@@ -82,4 +60,4 @@ export default class Article extends Component {
 			</Subscribe>
 		);
 	}
-}
+}//<Compass></Compass>

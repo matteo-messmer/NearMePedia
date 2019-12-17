@@ -56,7 +56,6 @@ export default class ArticlesContainer extends Container {
 			await this.setState(state => ({savedArticles: [...state.savedArticles, article]}));
 			
 		}
-		alert(this.state.savedArticles.length);
 	};
 
 	deleteArticle = async (article) => {
