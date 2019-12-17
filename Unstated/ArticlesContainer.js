@@ -45,29 +45,16 @@ export default class ArticlesContainer extends Container {
 		this.setState({ nearArticles: null });
 	};
 
-	clearSavedArticles = () => {
-		this.setState({ savedArticles:[] });
-	};
-
-	saveArticle = async (article) => {
+	saveArticle = (article) => {
 		if(this.state.savedArticles.some(a => a.title === article.title)){
 			alert('Article already in the reading list: ' + article.title);
 		} else {
-			await this.setState(state => ({savedArticles: [...state.savedArticles, article]}));
-			
+			this.setState(state => ({savedArticles: [...state.savedArticles, article]}));
 		}
 	};
 
-	deleteArticle = async (article) => {
-		 {
-			 
-			await this.setState({
-				savedArticles: this.state.savedArticles.filter(function(article) { 
-					return article !== savedArticles.length
-				})});
-		}
-		alert(this.state.savedArticles.length);
-	
+	deleteArticle = (article) => {
+		let articles = this.state.savedArticles.filter(a => a.title !== article.title);
+		this.setState({savedArticles: articles});
 	};
-
 }

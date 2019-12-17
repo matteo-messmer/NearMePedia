@@ -20,7 +20,7 @@ export default class MapScreen extends React.Component {
 								<MapView.Callout onPress={() => articles.loadArticleInBrowser(article.pageid)}>
 									<View>
 										<Text style={styles.marker}>{article.title}</Text>
-
+										<Text style={styles.subtitle}>Click to visit</Text>
 									</View>
 								</MapView.Callout>
 							</Marker>);

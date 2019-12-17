@@ -111,8 +111,16 @@ const styles = StyleSheet.create({
     },
 	marker: {
 		borderRadius: 4,
-		padding: 10,
+		margin: 10,
+		marginBottom:0,
 		fontSize:17,
+	},
+	subtitle: {
+        fontStyle: 'italic',
+		textAlign: 'center',
+		fontSize:14,
+		color:darkGray,
+		marginBottom: 10
 	}
 });
 

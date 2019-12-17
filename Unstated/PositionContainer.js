@@ -19,8 +19,8 @@ export default class PositionContainer extends Container {
 		);
 	}
 	
-	setCoordinates = async (coords) => {
-		await this.setState({	latitude:coords.latitude, longitude:coords.longitude});
+	setCoordinates = (coords) => {
+		this.setState({	latitude:coords.latitude, longitude:coords.longitude});
 	}
 	
 	distance = (latitude, longitude) => {

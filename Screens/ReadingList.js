@@ -14,11 +14,20 @@ export default class ReadingList extends Component {
 				<Subscribe to={[ArticlesContainer]}>
 					{
 						(pois, articles) => {
-							return (
-								<View>									
-									<ArticlesList data={pois.state.savedArticles}/>
-								</View>
-							);
+							if(pois.state.savedArticles.length === 0) {
+								return (
+									<View>									
+										<Text style={styles.subtitle}>Save articles to read them later here</Text>
+									</View>
+								);
+							}
+							else {
+								return (
+									<View>									
+										<ArticlesList data={pois.state.savedArticles}/>
+									</View>
+								);
+							}
 						}
 					}
 				</Subscribe>
